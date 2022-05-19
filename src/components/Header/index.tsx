@@ -5,6 +5,9 @@ import { ScrambleTextPlugin } from 'gsap/dist/ScrambleTextPlugin';
 import BurgerButton from '../BurgerButton'
 import { Wrapper } from './style'
 import getRandomInt from '../../helpers/getRandom';
+import { appSelector } from '../../features/app/slices/appSlice';
+import { useAppSelector } from '../../redux/hooks';
+
 
 gsap.registerPlugin(SplitText);
 gsap.registerPlugin(ScrambleTextPlugin);
@@ -51,10 +54,10 @@ const Header = () => {
 	}
 
 	const letter1 = getLetter([])
-	const letter2 = getLetter([letter1.position])
-	const letter3 = getLetter([letter1.position, letter2.position])
-	const letter4 = getLetter([letter1.position, letter2.position, letter3.position])
-	const letter5 = getLetter([letter1.position, letter2.position, letter3.position, letter4.position])
+	const letter2 = getLetter([letter1?.position])
+	const letter3 = getLetter([letter1?.position, letter2?.position])
+	const letter4 = getLetter([letter1?.position, letter2?.position, letter3?.position])
+	const letter5 = getLetter([letter1?.position, letter2?.position, letter3?.position, letter4?.position])
 
 	useEffect(() => {
 		const splitSheep = new SplitText(refSheep.current, {
@@ -64,11 +67,11 @@ const Header = () => {
 		const charsRandom = "!@#$%^&*+:'/|"
 
 		gsap.timeline({ repeat: 9999 })
-			.to(splitSheep.chars[letter1.position], { duration: getRandomInt(1, 4), delay: getRandomInt(0, 3), scrambleText: { text: letter1.letter, chars: charsRandom } })
-			.to(splitSheep.chars[letter2.position], { duration: getRandomInt(1, 4), delay: getRandomInt(0, 3), scrambleText: { text: letter2.letter, chars: charsRandom } })
-			.to(splitSheep.chars[letter3.position], { duration: getRandomInt(1, 4), delay: getRandomInt(0, 3), scrambleText: { text: letter3.letter, chars: charsRandom } })
-			.to(splitSheep.chars[letter4.position], { duration: getRandomInt(1, 4), delay: getRandomInt(0, 3), scrambleText: { text: letter4.letter, chars: charsRandom } })
-			.to(splitSheep.chars[letter5.position], { duration: getRandomInt(1, 4), delay: getRandomInt(0, 3), scrambleText: { text: letter5.letter, chars: charsRandom } })
+			.to(splitSheep.chars[letter1?.position], { duration: getRandomInt(1, 4), delay: getRandomInt(0, 3), scrambleText: { text: letter1.letter, chars: charsRandom } })
+			.to(splitSheep.chars[letter2?.position], { duration: getRandomInt(1, 4), delay: getRandomInt(0, 3), scrambleText: { text: letter2.letter, chars: charsRandom } })
+			.to(splitSheep.chars[letter3?.position], { duration: getRandomInt(1, 4), delay: getRandomInt(0, 3), scrambleText: { text: letter3.letter, chars: charsRandom } })
+			.to(splitSheep.chars[letter4?.position], { duration: getRandomInt(1, 4), delay: getRandomInt(0, 3), scrambleText: { text: letter4.letter, chars: charsRandom } })
+			.to(splitSheep.chars[letter5?.position], { duration: getRandomInt(1, 4), delay: getRandomInt(0, 3), scrambleText: { text: letter5.letter, chars: charsRandom } })
 			.to(splitSheep.chars[0], { duration: 0.5, scrambleText: "S" })
 			.to(splitSheep.chars[1], { duration: 0.5, scrambleText: "H" })
 			.to(splitSheep.chars[2], { duration: 0.5, scrambleText: "E" })
@@ -86,9 +89,10 @@ const Header = () => {
 			.set(".dash", { opacity: 0 })
 	}, []);
 
-	return (
-		<Wrapper>
+	const appState = useAppSelector(appSelector)
 
+	return (
+		<Wrapper className={appState.header.isBlack ? "black" : ""}>
 			<BurgerButton />
 			<p ref={refLogo} className="logo"><span ref={refDraw}>DRAW</span> ME A <span ref={refSheep} className="highlight">SHEEP<span className="dash">-</span></span></p>
 		</Wrapper>

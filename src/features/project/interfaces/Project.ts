@@ -14,6 +14,9 @@ export interface Project {
     }
   ];
   excerpt: any[];
+  typographie: {
+    asset: IGatsbyImageData;
+  };
   quote: Quote[];
   categories: Category[];
 }

@@ -17,6 +17,11 @@ export const Wrapper = styled(`header`)`
   background: inherit;
   mix-blend-mode: difference;
 
+  &.black {
+    backdrop-filter: blur(7px);
+    background: #161618 0% 0% no-repeat padding-box;
+  }
+
   .logo {
     margin-left: 16px;
     color: #fff;

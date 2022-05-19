@@ -8,6 +8,9 @@ const initialState: AppState = {
     isMenuOpen: false,
     isMenuClosing: false,
   },
+  header: {
+    isBlack: false,
+  },
   smoothScroll: undefined,
 };
 
@@ -36,6 +39,9 @@ const appSlice = createSlice({
     setSmoothScroll(state, { payload: smoothScroll }) {
       state.smoothScroll = smoothScroll;
     },
+    setIsBlacked(state) {
+      state.header.isBlack = true;
+    },
   },
 });
 
@@ -44,13 +50,14 @@ export const appSelector = (state: RootState) => state.app;
 export const menuSelector = (state: RootState) => state.app.menu;
 
 export const {
+  setIsBlacked,
   setIsLoaded,
+  setMenuClosingStateFalse,
+  setMenuClosingStateTrue,
   setMenuStateFalse,
   setMenuStateTrue,
   setMenuStatus,
   setSmoothScroll,
-  setMenuClosingStateTrue,
-  setMenuClosingStateFalse,
 } = appSlice.actions;
 export default appSlice.reducer;
 

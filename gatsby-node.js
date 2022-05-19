@@ -23,8 +23,6 @@ async function createProjectPages(graphql, actions) {
 
   if (result.errors) throw result.errors;
 
-  console.log(result.data);
-
   const projectEdges = (result.data.allSanityProject || {}).edges || [];
 
   projectEdges.forEach((edge) => {

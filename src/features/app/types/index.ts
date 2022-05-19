@@ -4,5 +4,8 @@ export interface AppState {
     isMenuOpen: boolean;
     isMenuClosing: boolean;
   };
+  header: {
+    isBlack: boolean;
+  };
   smoothScroll: globalThis.ScrollSmoother | undefined;
 }
