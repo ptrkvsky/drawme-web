@@ -40,7 +40,7 @@
   "devDependencies": {
     "@types/node": "^17.0.20",
     "@types/react": "^17.0.39",
-    "@types/react-canvas-draw": "^1.1.1",
+    "@types/react-canvas-draw": "1.2.0",
     "@types/react-dom": "^17.0.11",
     "@types/react-helmet": "^6.1.5",
     "dat.gui": "0.7.9",
