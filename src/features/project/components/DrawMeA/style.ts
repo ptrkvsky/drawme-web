@@ -5,11 +5,6 @@ export const Title = styled(`h1`)`
 
   .brushed {
     position: relative;
-    img {
-      position: absolute;
-      left: 0;
-      z-index: -1;
-    }
   }
 
   .highlight {

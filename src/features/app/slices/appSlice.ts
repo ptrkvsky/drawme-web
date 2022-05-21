@@ -1,5 +1,6 @@
+import { useAppDispatch } from "./../../../redux/hooks";
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState, AppDispatch, store } from "../../../redux/store";
+import { RootState } from "../../../redux/store";
 import { AppState } from "../types/index";
 
 const initialState: AppState = {
@@ -49,6 +50,7 @@ const appSlice = createSlice({
 export const appSelector = (state: RootState) => state.app;
 export const menuSelector = (state: RootState) => state.app.menu;
 
+// Dispatch actions
 export const {
   setIsBlacked,
   setIsLoaded,

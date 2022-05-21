@@ -9,6 +9,8 @@ import Typography from "../Typography";
 import DrawMeA from "../DrawMeA";
 import { useAppDispatch } from "../../../../redux/hooks";
 import { setIsBlacked } from "../../../app/slices/appSlice"
+import { Wrapper, WrapperSection1, WrapperColLeft, WrapperColRight } from "./style";
+import { setColor } from "../../slices/projectSlice";
 
 export const query = graphql`
   query ProjectTemplateQuery($id: String!) {
@@ -65,17 +67,24 @@ const ProjectTemplate = ({ data }: PageProps<DataProps>) => {
 	const dispatch = useAppDispatch()
 	// Set background for the header
 	dispatch(setIsBlacked())
+	dispatch(setColor(project.color1))
 
 	return (
-		<>
-			<Layout>
-				<DrawMeA drawMeA={project.drawMeA} />
-				<PresentationClient text={project.excerpt} />
-				<MainImages images={project.mainImages} />
-				<Colors color1={project.color1} color2={project.color2} color3={project.color3} />
-				<Typography image={project.typographie.asset} />
-			</Layout>
-		</>
+		<Layout>
+			<Wrapper className="template__wrapper">
+				<WrapperSection1 className="template-container">
+					<WrapperColLeft>
+						<DrawMeA drawMeA={project.drawMeA} />
+						<MainImages images={project.mainImages} />
+					</WrapperColLeft>
+					<WrapperColRight>
+						<PresentationClient text={project.excerpt} />
+						<Colors color1={project.color1} color2={project.color2} color3={project.color3} />
+						<Typography image={project.typographie.asset} />
+					</WrapperColRight>
+				</WrapperSection1>
+			</Wrapper>
+		</Layout>
 	);
 };
 

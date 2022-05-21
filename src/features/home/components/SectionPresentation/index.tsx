@@ -26,27 +26,44 @@ const SectionPresentation = ({ presentation }: Props) => {
 		const splitIntroPresentation = new SplitText(refIntroPresentation.current, {
 			type: `lines`,
 		});
+
 		new SplitText(refIntroPresentation.current, {
 			type: `lines`,
 		});
-		// const splitIntroDetail = new SplitText(refIntroDetail.current, {
-		// 	type: `lines`,
-		// });
+
 		new SplitText(refIntroDetail.current, {
 			type: `lines`,
 		});
 
 		gsap.from(splitIntroPresentation.lines, {
-			scrollTrigger: "#wrapper-svg",
-			duration: 0.5,
-			delay: 0,
-			y: -200,
+			scrollTrigger: {
+				trigger: "#wrapper-svg",
+				start: ' center center',
+				markers: true,
+			},
+			duration: 2,
+			y: 200,
 			ease: "power4.out",
-			skewY: -20,
+			delay: 0,
+			skewY: 10,
 			stagger: {
-				amount: 0.5,
+				amount: 0.4,
 			},
 		});
+
+		console.log('test')
+
+		// gsap.from(splitIntroPresentation.lines, {
+		// 	scrollTrigger: "#wrapper-svg",
+		// 	duration: 0.5,
+		// 	delay: 0,
+		// 	y: -200,
+		// 	ease: "power4.out",
+		// 	skewY: -20,
+		// 	stagger: {
+		// 		amount: 0.5,
+		// 	},
+		// });
 	}, [])
 
 	return (

@@ -1,10 +1,12 @@
 import { configureStore, Action } from "@reduxjs/toolkit";
 import { ThunkAction } from "redux-thunk";
 import appReducer from "../features/app/slices/appSlice";
+import projectReducer from "../features/project/slices/projectSlice";
 
 export const store = configureStore({
   reducer: {
     app: appReducer,
+    project: projectReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

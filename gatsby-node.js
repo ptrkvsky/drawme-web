@@ -32,7 +32,7 @@ async function createProjectPages(graphql, actions) {
 
     createPage({
       path,
-      component: require.resolve("./src/features/project/components/TemplateProject.tsx"),
+      component: require.resolve("./src/features/project/components/TemplateProject/index.tsx"),
       context: { id },
     });
   });

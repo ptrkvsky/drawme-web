@@ -1,5 +1,6 @@
 import React from "react";
 import { IGatsbyImageData, GatsbyImage, getImage } from "gatsby-plugin-image";
+import { Wrapper } from "./style";
 
 interface Props {
 	images: [
@@ -10,9 +11,8 @@ interface Props {
 }
 
 const MainImages = ({ images }: Props) => {
-	debugger
 	return (
-		<div>
+		<Wrapper className="wrapper-images">
 			{images.map((image) => {
 				const imageGatsby: IGatsbyImageData | undefined = getImage(image.asset);
 
@@ -22,7 +22,7 @@ const MainImages = ({ images }: Props) => {
 					)
 				);
 			})}
-		</div>
+		</Wrapper>
 	);
 };
 

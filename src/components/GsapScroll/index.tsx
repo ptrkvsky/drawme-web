@@ -1,18 +1,18 @@
+import React, { useState } from "react"
 import gsap from "gsap"
-import React from "react"
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/dist/ScrollSmoother';
 import { FC, useEffect, useRef } from "react";
-import { useAppDispatch } from "../../redux/hooks";
-import { setSmoothScroll } from "../../features/app/slices/appSlice";
+import { SmoothScrollContext } from "../../features/app/context/SmoothScrollContext";
 
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 const GsapScroll: FC = ({ children }) => {
-	const dispatch = useAppDispatch()
+	const [smoothScroll, setSmoothScroll] = useState<globalThis.ScrollSmoother>()
 	const refWrapper = useRef<HTMLDivElement>(null)
 	const refContent = useRef<HTMLDivElement>(null)
+
 	// const refScroll = useRef<globalThis.ScrollSmoother>(null)
 	useEffect(() => {
 		const smooth = ScrollSmoother.create({
@@ -24,16 +24,17 @@ const GsapScroll: FC = ({ children }) => {
 			ignoreMobileResize: true, // skips ScrollTrigger.refresh() on mobile resizes from address bar showing/hiding
 			effects: true,
 		});
-
-		dispatch(setSmoothScroll(smooth))
+		setSmoothScroll(smooth)
 	}, [])
 
 	return (
-		<div ref={refWrapper}>
-			<div ref={refContent}>
-				{children}
+		<SmoothScrollContext.Provider value={smoothScroll}>
+			<div id="smooth-wrapper" ref={refWrapper}>
+				<div id="smooth-content" ref={refContent}>
+					{children}
+				</div>
 			</div>
-		</div>
+		</SmoothScrollContext.Provider>
 	)
 }
 
