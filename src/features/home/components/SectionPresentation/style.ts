@@ -41,7 +41,7 @@ export const Section = styled.section`
       overflow: hidden;
       .reveal {
         background-color: white;
-        width: 101%;
+        width: calc(100% + 2px);
         height: calc(100% + 2px);
         position: absolute;
         top: -1px;
