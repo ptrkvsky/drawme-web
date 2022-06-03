@@ -3,10 +3,16 @@ import { SvgSignature } from "./style";
 import gsap from "gsap";
 
 const Signature = () => {
-	const timeline = gsap.timeline();
+	const refSVG = useRef<SVGSVGElement>(null);
+	const timeline = gsap.timeline({
+		scrollTrigger: {
+			trigger: refSVG.current,
+			start: "center center",
+			markers: true
+		}
+	});
 	const refTimeline = useRef<gsap.core.Timeline>(timeline);
 
-	const refSVG = useRef<SVGSVGElement>(null);
 	const refLine1 = useRef<SVGPathElement>(null);
 	const refLine2 = useRef<SVGPathElement>(null);
 	const refLine3 = useRef<SVGPathElement>(null);
@@ -22,28 +28,30 @@ const Signature = () => {
 	const q = gsap.utils.selector(refSVG);
 
 	useEffect(() => {
-		refTimeline.current
-			.set(q(".path"), {
-				fill: "transparent",
-			})
-			.fromTo(
-				q(".path"),
-				{
-					drawSVG: "0% 0%",
-				},
-				{
-					drawSVG: true,
-					ease: `linear`,
-					duration: 7,
-					stagger: 0.3,
-				}
-			);
+		// setTimeout(() => {
+		// 	refTimeline.current
+		// 		.set(q(".path"), {
+		// 			fill: "transparent",
+		// 		})
+		// 		.fromTo(
+		// 			q(".path"),
+		// 			{
+		// 				drawSVG: "0% 0%",
+		// 			},
+		// 			{
+		// 				drawSVG: true,
+		// 				ease: `linear`,
+		// 				duration: 7,
+		// 				stagger: 0.3,
+		// 			}
+		// 		);
+		// }, 10);
 	}, []);
 
 	return (
 		<SvgSignature
 			version="1.1"
-			id="Calque_1"
+			id="signature"
 			xmlns="http://www.w3.org/2000/svg"
 			xmlnsXlink="http://www.w3.org/1999/xlink"
 			x="0px"
@@ -53,7 +61,7 @@ const Signature = () => {
 			className="svg-signature"
 			ref={refSVG}
 		>
-			<g>
+			<g id="bg-sig" mask="url(#mask)">
 				<path
 					className="path"
 					ref={refLine1}

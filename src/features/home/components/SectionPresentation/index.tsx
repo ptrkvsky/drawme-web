@@ -5,80 +5,67 @@ import { StaticImage } from "gatsby-plugin-image";
 import { Presentation } from "./interfaces/Presentation";
 import { Section } from "./style";
 import Signature from "../Signature";
-import { revealParagraph } from "./animation";
 
 interface Props {
 	presentation: Presentation;
 }
 
 const SectionPresentation = ({ presentation }: Props) => {
+	// Timeline
+	const refTimeline = useRef<gsap.core.Timeline>();
+
+	// Selecteur d'élément 
+	const refSelecteur = useRef();
+	const selectElement = gsap.utils.selector(refSelecteur);
+	// References
 	const refIntroPresentation = useRef<HTMLDivElement>(null);
 	const refIntroDetail = useRef<HTMLDivElement>(null);
 	const refWrapperSVG = useRef<HTMLDivElement>(null);
-	const refTl = useRef<gsap.core.Timeline>(gsap.timeline({
-		scrollTrigger: {
-			trigger: refWrapperSVG.current,
-			start: "top center", // when the top of the trigger hits the top of the viewport
-		}
-	}))
 
 	useEffect(() => {
-		const splitIntroPresentation = new SplitText(refIntroPresentation.current, {
-			type: `lines`,
-		});
+		setTimeout(() => {
+			const splitParagraph = new SplitText(refIntroPresentation.current, {
+				type: `lines`,
+			});
 
-		new SplitText(refIntroPresentation.current, {
-			type: `lines`,
-		});
+			new SplitText(refIntroPresentation.current, {
+				type: `lines`,
+			});
 
-		new SplitText(refIntroDetail.current, {
-			type: `lines`,
-		});
-
-		gsap.from(splitIntroPresentation.lines, {
-			scrollTrigger: {
-				trigger: "#wrapper-svg",
-				start: ' center center',
-				markers: true,
-			},
-			duration: 2,
-			y: 200,
-			ease: "power4.out",
-			delay: 0,
-			skewY: 10,
-			stagger: {
-				amount: 0.4,
-			},
-		});
-
-		console.log('test')
-
-		// gsap.from(splitIntroPresentation.lines, {
-		// 	scrollTrigger: "#wrapper-svg",
-		// 	duration: 0.5,
-		// 	delay: 0,
-		// 	y: -200,
-		// 	ease: "power4.out",
-		// 	skewY: -20,
-		// 	stagger: {
-		// 		amount: 0.5,
-		// 	},
-		// });
+			refTimeline.current = gsap.timeline({
+				scrollTrigger: refIntroPresentation.current
+			})
+				.from(splitParagraph.lines, {
+					duration: 0.75,
+					y: 100,
+					ease: "power4.out",
+					skewY: 10,
+					stagger: {
+						amount: 0.3,
+					},
+					opacity: 0,
+				});
+		}, 10)
 	}, [])
 
 	return (
 		<Section className="section-presentation">
 			<div className="illustration crayon" data-speed="0.85">
-				<StaticImage
-					src="../../../../assets/images/illustration_crayon.png"
-					alt="Illustration crayon"
-				/>
+				<div className="wrapper-overflow">
+					<StaticImage
+						src="../../../../assets/images/illustration_crayon.png"
+						alt="Illustration crayon"
+					/>
+					<div className="reveal"></div>
+				</div>
 			</div>
 			<div className="illustration book" data-speed="1.05">
-				<StaticImage
-					src="../../../../assets/images/illustration_book.png"
-					alt="Illustration book"
-				/>
+				<div className="wrapper-overflow">
+					<StaticImage
+						src="../../../../assets/images/illustration_book.png"
+						alt="Illustration book"
+					/>
+				</div>
 			</div>
 			<div className="illustration fingers" >
 				<div className="relative">

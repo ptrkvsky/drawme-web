@@ -11,26 +11,41 @@ export const Section = styled.section`
 
   .illustration {
     position: absolute;
+
     &.fingers {
       top: 6.8rem;
       left: 0;
       max-width: 33.9rem;
     }
+
     &.book {
       top: 0;
       left: 55rem;
       max-width: 18.6rem;
     }
+
     &.letters {
       bottom: 0;
       right: 0;
       transform: translate(50%, 50%);
       max-width: 20.4rem;
     }
+
     &.crayon {
       bottom: 0;
       left: 55rem;
       max-width: 25.8rem;
+    }
+
+    .wrapper-overflow {
+      overflow: hidden;
+      .reveal {
+        background-color: white;
+        width: 101%;
+        height: calc(100% + 2px);
+        position: absolute;
+        top: -1px;
+      }
     }
   }
 
@@ -59,6 +74,10 @@ export const Section = styled.section`
     font-weight: 800;
     font-size: 2.1rem;
     font-family: ${({ theme }) => theme.typography.fonts.body.thin};
+
+    > div {
+      overflow: hidden; // reveal text
+    }
   }
 
   .wrapper-svg {
