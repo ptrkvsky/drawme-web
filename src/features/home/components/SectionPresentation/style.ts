@@ -61,6 +61,9 @@ export const Section = styled.section`
 
     > div {
       overflow: hidden; // reveal text
+      .animation-done & {
+        overflow: visible;
+      }
     }
   }
 
@@ -77,6 +80,9 @@ export const Section = styled.section`
 
     > div {
       overflow: hidden; // reveal text
+      .animation-done & {
+        overflow: visible;
+      }
     }
   }
 

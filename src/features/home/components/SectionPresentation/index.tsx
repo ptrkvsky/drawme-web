@@ -37,13 +37,15 @@ const getLines = (refParagraph: React.RefObject<HTMLDivElement>): SplitText => {
 }
 
 const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
+	// Get smoothscroll context
 	const smoothScrollContext = useContext(SmoothScrollContext);
-
+	// state to say when animation is done
+	const [isAnimationDone, setIsAnimationDone] = React.useState(false);
 	// Timeline
 	const refTimeline = useRef<gsap.core.Timeline>();
 	// Selecteur d'élément 
-	const refSelecteur = useRef<HTMLElement>(null);
-	const selectElement = gsap.utils.selector(refSelecteur);
+	const refSection = useRef<HTMLElement>(null);
+	const selectElement = gsap.utils.selector(refSection);
 	// References
 	const refIntroPresentation = useRef<HTMLDivElement>(null);
 	const refIntroDetail = useRef<HTMLDivElement>(null);
@@ -54,23 +56,23 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
 			const splitIntroPresentation = getLines(refIntroPresentation);
 			const splitIntroDetail = getLines(refIntroDetail);
 
-			// apply data lag to detail
+			// Apply data lag to presentation
 			if (splitIntroPresentation && smoothScrollContext) {
-				splitIntroPresentation.lines.forEach((line, i) => {
+				splitIntroPresentation.lines.forEach((line: any, i: number) => {
 					smoothScrollContext.effects(line, { speed: 1, lag: (i + 1) * 0.05 });
 				})
 			}
 
-			// apply data lag to detail
+			// Apply data lag to detail
 			if (splitIntroDetail && smoothScrollContext) {
-				splitIntroDetail.lines.forEach((line, i) => {
+				splitIntroDetail.lines.forEach((line: any, i: number) => {
 					smoothScrollContext.effects(line, { speed: 1, lag: (i + 1) * 0.05 });
 				})
 			}
 
 			refTimeline.current = gsap.timeline({
 				scrollTrigger: {
-					trigger: refSelecteur.current,
+					trigger: refSection.current,
 					markers: true,
 					start: "0 center",
 				}
@@ -108,12 +110,18 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
 					opacity: 0,
 					delay: -0.3,
 				})
-
+				// remove overflow hidden from lines
+				.from(splitIntroPresentation.lines, {
+					overflow: "visible",
+					onComplete: () => {
+						setIsAnimationDone(true);
+					}
+				})
 		}, 10)
 	}, [smoothScrollContext])
 
 	return (
-		<Section className="section-presentation" ref={refSelecteur}>
+		<Section className={`${isAnimationDone ? "section-presentation animation-done" : "section-presentation"}`} ref={refSection}>
 			<div className="illustration book" data-speed="1.05" data-lag="0.04">
 				<div className="wrapper-overflow">
 					<StaticImage

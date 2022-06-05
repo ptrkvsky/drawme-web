@@ -11,6 +11,7 @@ import SectionPresentation from "../features/home/components/SectionPresentation
 import Canvas from "../features/home/components/Canvas";
 import SectionDrawTogether from "../features/home/components/SectionDrawTogether";
 import Footer from "../components/Footer";
+import SectionKnowMeBetter from "../features/home/components/SectionKnowMeBetter";
 
 export const query = graphql`
   query IndexPageQuery {
@@ -111,6 +112,14 @@ const IndexPage = (props: any) => {
       <SectionDraw />
       <SectionProjets />
       <SectionDrawTogether />
+      <SectionKnowMeBetter />
+      <Footer />
+      <Footer />
+      <Footer />
+      <Footer />
+      <Footer />
+      <Footer />
+      <Footer />
       <Footer />
     </Layout>
   );
