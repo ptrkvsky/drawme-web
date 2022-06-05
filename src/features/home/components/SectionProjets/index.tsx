@@ -11,6 +11,7 @@ const SectionProjets = () => {
       .timeline({
         scrollTrigger: {
           trigger: refSectionProjets.current,
+          markers: true,
         },
       })
       .to(`#canvas-black`, {

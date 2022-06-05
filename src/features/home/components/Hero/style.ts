@@ -21,6 +21,7 @@ export const Heading = styled(`h1`)`
   mix-blend-mode: difference;
 
   .letters {
+    position: relative;
     font-size: 0;
     overflow: hidden;
     div {
@@ -30,6 +31,13 @@ export const Heading = styled(`h1`)`
 
     &.graphic {
       letter-spacing: 10px;
+    }
+
+    .shadow {
+      position: absolute;
+      top: 0;
+      right: 0;
+      color: hotpink;
     }
   }
 
@@ -59,16 +67,22 @@ export const Heading = styled(`h1`)`
 `;
 
 export const Presentation = styled(`div`)`
-  font-size: 1.6rem;
   gap: 24px;
   display: flex;
   justify-content: center;
 
-  color: #f7f7f7;
-  letter-spacing: 5.6px;
-  font-size: 1.6rem;
-
   mix-blend-mode: difference;
+
+  span {
+    letter-spacing: 5.6px;
+    color: #f7f7f7;
+    font-size: 1.6rem;
+    transform: translate(-30, 0px);
+  }
+
+  .separator {
+    transform: translate(0%, 100%);
+  }
 `;
 
 export const Mark = styled(`div`)`

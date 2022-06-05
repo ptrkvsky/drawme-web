@@ -10,6 +10,18 @@ interface Props {
 	presentation: Presentation;
 }
 
+const scaleIllustration = {
+	scale: 1.1,
+	duration: 0.75,
+	ease: "power4.out",
+}
+
+const reveal = {
+	duration: 0.75,
+	x: "100%",
+	ease: "power4.out",
+}
+
 // Transform a paragraph into a SplitText object
 const getLines = (refParagraph: React.RefObject<HTMLDivElement>): SplitText => {
 	const splitParagraph = new SplitText(refParagraph.current, {
@@ -26,7 +38,6 @@ const getLines = (refParagraph: React.RefObject<HTMLDivElement>): SplitText => {
 const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
 	// Timeline
 	const refTimeline = useRef<gsap.core.Timeline>();
-
 	// Selecteur d'élément 
 	const refSelecteur = useRef<HTMLElement>(null);
 	const selectElement = gsap.utils.selector(refSelecteur);
@@ -35,28 +46,26 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
 	const refIntroDetail = useRef<HTMLDivElement>(null);
 	const refWrapperSVG = useRef<HTMLDivElement>(null);
 
-
 	useEffect(() => {
 		setTimeout(() => {
 			const splitIntroPresentation = getLines(refIntroPresentation);
 			const splitIntroDetail = getLines(refIntroDetail);
 
 			refTimeline.current = gsap.timeline({
-				scrollTrigger: refSelecteur.current
+				scrollTrigger: {
+					trigger: refSelecteur.current,
+					markers: true,
+					start: "0 center",
+				}
 			})
 				// -------------------- Reveal image book
 				.addLabel("revealBook")
-				.from(selectElement(".illustration.book"), {
-					scale: 1.1,
-					duration: 1,
-					delay: 2,
-					ease: "power4.out",
-				}, "revealBook")
-				.to(selectElement(".illustration.book .reveal"), {
-					duration: 1,
-					y: "100%",
-					ease: "power4.out",
-				}, "revealBook")
+				.from(selectElement(".illustration.book"), scaleIllustration, "revealBook")
+				.to(selectElement(".illustration.book .reveal"), reveal, "revealBook")
+				// -------------------- Reveal image book
+				.addLabel("revealFingers")
+				.from(selectElement(".illustration.fingers"), scaleIllustration, "revealFingers")
+				.to(selectElement(".illustration.fingers .reveal"), reveal, "revealFingers")
 				// Display intro
 				.from(splitIntroPresentation.lines, {
 					duration: 0.75,
@@ -79,18 +88,10 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
 					},
 					opacity: 0,
 				})
-
 				// -------------------- Reveal image crayon
 				.addLabel("revealCrayon")
-				.from(selectElement(".illustration.crayon"), {
-					scale: 1.1,
-					duration: 1
-				}, "revealCrayon")
-				.to(selectElement(".illustration.crayon .reveal"), {
-					duration: 1,
-					y: "100%",
-					ease: "power4.out",
-				}, "revealCrayon")
+				.from(selectElement(".illustration.crayon"), scaleIllustration, "revealCrayon")
+				.to(selectElement(".illustration.crayon .reveal"), reveal, "revealCrayon")
 		}, 10)
 	}, [])
 
@@ -114,7 +115,6 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
 					<div className="reveal"></div>
 				</div>
 			</div>
-
 			<div className="illustration fingers" >
 				<div className="relative">
 					<div className="wrapper-overflow" data-speed="0.9">
@@ -124,12 +124,14 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
 						/>
 						<div className="reveal"></div>
 					</div>
-					<div className="illustration letters" data-speed="1.15" data-lag="0.03">
-						<StaticImage
-							src="../../../../assets/images/illustration_letters.png"
-							alt="Illustration letters"
-						/>
-						<div className="reveal"></div>
+					<div className="illustration letters">
+						<div className="wrapper-overflow" data-speed="1.15" data-lag="0.03">
+							<StaticImage
+								src="../../../../assets/images/illustration_letters.png"
+								alt="Illustration letters"
+							/>
+							<div className="reveal"></div>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -13,7 +13,6 @@ const GsapScroll: FC = ({ children }) => {
 	const refWrapper = useRef<HTMLDivElement>(null)
 	const refContent = useRef<HTMLDivElement>(null)
 
-	// const refScroll = useRef<globalThis.ScrollSmoother>(null)
 	useEffect(() => {
 		const smooth = ScrollSmoother.create({
 			wrapper: refWrapper.current,

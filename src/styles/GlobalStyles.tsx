@@ -10,12 +10,12 @@ import PPNeueMontrealThin from "../fonts/montreal/PPNeueMontreal-Thin.woff2"
 
 
 const GlobalStyles = () => {
-	const theme: ITheme = useTheme();
-	return (
-		<>
-			<ResetStyles />
-			<Global
-				styles={css`
+  const theme: ITheme = useTheme();
+  return (
+    <>
+      <ResetStyles />
+      <Global
+        styles={css`
 					@font-face {
 						font-family: 'WagonBold';
           	src: url(${wagonBold}) format('woff2');
@@ -118,7 +118,7 @@ const GlobalStyles = () => {
           .none {
             display: none;
           }
-          .hidden {
+          .opacity-0 {
             opacity: 0;
           }
           .primary-color {
@@ -186,9 +186,9 @@ const GlobalStyles = () => {
 					}
 
         `}
-			/>
-		</>
-	);
+      />
+    </>
+  );
 };
 
 export default GlobalStyles;

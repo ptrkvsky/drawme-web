@@ -8,7 +8,7 @@ const Signature = () => {
 		scrollTrigger: {
 			trigger: refSVG.current,
 			start: "center center",
-			markers: true
+			markers: false
 		}
 	});
 	const refTimeline = useRef<gsap.core.Timeline>(timeline);
