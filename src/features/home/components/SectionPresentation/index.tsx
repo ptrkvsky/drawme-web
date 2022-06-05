@@ -1,10 +1,11 @@
-import React, { FC, useEffect, useRef } from "react";
+import React, { FC, useContext, useEffect, useRef } from "react";
 import gsap from "gsap"
 import { SplitText } from "gsap/dist/SplitText";
 import { StaticImage } from "gatsby-plugin-image";
 import { Presentation } from "./interfaces/Presentation";
 import { Section } from "./style";
 import Signature from "../Signature";
+import { SmoothScrollContext } from "../../../app/context/SmoothScrollContext";
 
 interface Props {
 	presentation: Presentation;
@@ -36,6 +37,8 @@ const getLines = (refParagraph: React.RefObject<HTMLDivElement>): SplitText => {
 }
 
 const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
+	const smoothScrollContext = useContext(SmoothScrollContext);
+
 	// Timeline
 	const refTimeline = useRef<gsap.core.Timeline>();
 	// Selecteur d'élément 
@@ -51,6 +54,20 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
 			const splitIntroPresentation = getLines(refIntroPresentation);
 			const splitIntroDetail = getLines(refIntroDetail);
 
+			// apply data lag to detail
+			if (splitIntroPresentation && smoothScrollContext) {
+				splitIntroPresentation.lines.forEach((line, i) => {
+					smoothScrollContext.effects(line, { speed: 1, lag: (i + 1) * 0.05 });
+				})
+			}
+
+			// apply data lag to detail
+			if (splitIntroDetail && smoothScrollContext) {
+				splitIntroDetail.lines.forEach((line, i) => {
+					smoothScrollContext.effects(line, { speed: 1, lag: (i + 1) * 0.05 });
+				})
+			}
+
 			refTimeline.current = gsap.timeline({
 				scrollTrigger: {
 					trigger: refSelecteur.current,
@@ -64,11 +81,14 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
 				.to(selectElement(".illustration.book .reveal"), reveal, "revealBook")
 				// -------------------- Reveal image book
 				.addLabel("revealFingers")
-				.from(selectElement(".illustration.fingers"), scaleIllustration, "revealFingers")
-				.to(selectElement(".illustration.fingers .reveal"), reveal, "revealFingers")
+				.from(selectElement(".illustration.fingers"), scaleIllustration, "revealFingers-=0.35")
+				.to(selectElement(".illustration.fingers .reveal"), reveal, "revealFingers-=0.35")
+				// -------------------- Reveal image crayon
+				.addLabel("revealCrayon")
+				.from(selectElement(".illustration.crayon"), scaleIllustration, "revealCrayon-=0.25")
+				.to(selectElement(".illustration.crayon .reveal"), reveal, "revealCrayon-=0.25")
 				// Display intro
 				.from(splitIntroPresentation.lines, {
-					duration: 0.75,
 					y: 100,
 					ease: "power4.out",
 					skewY: 10,
@@ -79,7 +99,6 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
 				})
 				// Display detail
 				.from(splitIntroDetail.lines, {
-					duration: 0.75,
 					y: 100,
 					ease: "power4.out",
 					skewY: 10,
@@ -87,13 +106,11 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
 						amount: 0.3,
 					},
 					opacity: 0,
+					delay: -0.3,
 				})
-				// -------------------- Reveal image crayon
-				.addLabel("revealCrayon")
-				.from(selectElement(".illustration.crayon"), scaleIllustration, "revealCrayon")
-				.to(selectElement(".illustration.crayon .reveal"), reveal, "revealCrayon")
+
 		}, 10)
-	}, [])
+	}, [smoothScrollContext])
 
 	return (
 		<Section className="section-presentation" ref={refSelecteur}>
