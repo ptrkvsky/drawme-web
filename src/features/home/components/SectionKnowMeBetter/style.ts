@@ -14,7 +14,7 @@ export const Stripes = styled(`div`)`
   font-family: ${({ theme }) => theme.typography.fonts.heading};
 
   .stripe {
-    position: absolute;
+    position: relative;
   }
 
   .highlight {
