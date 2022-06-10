@@ -131,7 +131,7 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
 					<div className="reveal"></div>
 				</div>
 			</div>
-			<div className="illustration crayon" data-speed="0.85" data-lag="0.3">
+			<div className="illustration crayon" data-speed="0.2" data-lag="0.3">
 				<div className="wrapper-overflow">
 					<StaticImage
 						src="../../../../assets/images/illustration_crayon.png"

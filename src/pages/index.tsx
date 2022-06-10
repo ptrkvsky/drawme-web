@@ -114,13 +114,6 @@ const IndexPage = (props: any) => {
       <SectionDrawTogether />
       <SectionKnowMeBetter />
       <Footer />
-      <Footer />
-      <Footer />
-      <Footer />
-      <Footer />
-      <Footer />
-      <Footer />
-      <Footer />
     </Layout>
   );
 };

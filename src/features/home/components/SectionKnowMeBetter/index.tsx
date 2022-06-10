@@ -1,8 +1,9 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { Section, Stripes } from './style';
 import { SmoothScrollContext } from '../../../app/context/SmoothScrollContext';
 import { Linear } from 'gsap/all';
+import { horizontalLoop } from "../../../../helpers/horizontalLoop";
 
 const SectionKnowMeBetter = () => {
 	// get smoothscrollcontext
@@ -15,40 +16,47 @@ const SectionKnowMeBetter = () => {
 
 	const el = refMarqueeTop.current
 
-	if (el) {
-		// marquee 
-		const rate = 200;
-		// get the width of the element
-		const distance = el.clientWidth;
-		// get the margin-right of the element
-		const style = window.getComputedStyle(el);
-		const marginRight = parseInt(style.marginRight) || 0;
-		// get the total width of the element
-		const totalDistance = distance + marginRight;
-		// get the parent of the element
-		const container = el.parentElement;
-
-		gsap.to(container, {
-			repeat: -1,
-			x: '-' + totalDistance,
-			ease: Linear.easeNone,
-			duration: totalDistance / rate, // get the duration of the animation 
+	useEffect(() => {
+		gsap.utils.toArray(".stripes").forEach((line: any, i) => {
+			const links = line.querySelectorAll(".stripe"),
+				tl = horizontalLoop(links, {
+					repeat: -1,
+					speed: 1 + i * 0.5,
+					reversed: i ? true : false,
+					paddingRight: parseFloat(`${gsap.getProperty(links[0], "marginRight", "px")}`) // otherwise first element would be right up against the last when it loops. In this layout, the spacing is done with marginRight.
+				});
+			links.forEach((link: any) => {
+				link.addEventListener("mouseenter", () => gsap.to(tl, { timeScale: 0, overwrite: true }));
+				link.addEventListener("mouseleave", () => gsap.to(tl, { timeScale: i ? -1 : 1, overwrite: true }));
+			});
 		});
 
-	}
+	}, [])
 
 	return (
 		<Section ref={refSection}>
 			<Stripes ref={refMarqueeTop} className='stripes top'>
-				<p className='stripe item marquee'>Wanna get to know me better <span className='highlight'>?</span></p>
-				<p className='stripe item marquee'>Wanna get to know me better <span className='highlight'>?</span></p>
-				<p className='stripe item marquee'>Wanna get to know me better <span className='highlight'>?</span></p>
+				<span className="stripe">Wanna get to know me better <span className="highlight">?</span></span>
+				<span className="stripe">Wanna get to know me better <span className="highlight">?</span></span>
+				<span className="stripe">Wanna get to know me better <span className="highlight">?</span></span>
+				<span className="stripe">Wanna get to know me better <span className="highlight">?</span></span>
+				<span className="stripe">Wanna get to know me better <span className="highlight">?</span></span>
+				<span className="stripe">Wanna get to know me better <span className="highlight">?</span></span>
+				<span className="stripe">Wanna get to know me better <span className="highlight">?</span></span>
+				<span className="stripe">Wanna get to know me better <span className="highlight">?</span></span>
 			</Stripes>
-			<p>
+			<p className="who-am-i">
 				Who am i ?
 			</p>
 			<Stripes className='stripes bottom'>
-				<p className='stripe item'>Wanna get to know me better <span className='highlight'>?</span></p>
+				<span className="stripe">Wanna get to know me better <span className="highlight">?</span></span>
+				<span className="stripe">Wanna get to know me better <span className="highlight">?</span></span>
+				<span className="stripe">Wanna get to know me better <span className="highlight">?</span></span>
+				<span className="stripe">Wanna get to know me better <span className="highlight">?</span></span>
+				<span className="stripe">Wanna get to know me better <span className="highlight">?</span></span>
+				<span className="stripe">Wanna get to know me better <span className="highlight">?</span></span>
+				<span className="stripe">Wanna get to know me better <span className="highlight">?</span></span>
+				<span className="stripe">Wanna get to know me better <span className="highlight">?</span></span>
 			</Stripes>
 		</Section>
 	);
