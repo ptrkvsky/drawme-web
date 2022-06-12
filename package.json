@@ -12,8 +12,8 @@
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "dependencies": {
-    "@emotion/react": "11.8.1",
-    "@emotion/styled": "11.8.1",
+    "@emotion/react": "11.9.3",
+    "@emotion/styled": "11.9.3",
     "@portabletext/react": "^1.0.1",
     "@reduxjs/toolkit": "^1.7.2",
     "@sanity/image-url": "1.0.1",
