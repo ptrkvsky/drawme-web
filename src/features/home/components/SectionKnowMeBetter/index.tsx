@@ -4,6 +4,7 @@ import { Section, Stripes } from './style';
 import { SmoothScrollContext } from '../../../app/context/SmoothScrollContext';
 import { Linear } from 'gsap/all';
 import { horizontalLoop } from "../../../../helpers/horizontalLoop";
+import Circle from '../Circle';
 
 const SectionKnowMeBetter = () => {
 	// get smoothscrollcontext
@@ -48,6 +49,7 @@ const SectionKnowMeBetter = () => {
 			<p className="who-am-i">
 				Who am i ?
 			</p>
+			<Circle />
 			<Stripes className='stripes bottom'>
 				<span className="stripe">Wanna get to know me better <span className="highlight">?</span></span>
 				<span className="stripe">Wanna get to know me better <span className="highlight">?</span></span>
