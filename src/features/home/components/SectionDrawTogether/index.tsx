@@ -1,5 +1,9 @@
 import React from "react";
+import gsap from 'gsap';
+import { MorphSVGPlugin } from "gsap/MorphSVGPlugin";
 import { Section, Title } from "./style"
+
+gsap.registerPlugin(MorphSVGPlugin);
 
 const SectionDrawTogether = () => {
 	return (
