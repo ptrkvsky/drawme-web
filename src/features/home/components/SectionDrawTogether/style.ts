@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { TitleSection } from "../../../../styles/atoms/Titles";
 
 export const Section = styled("section")`
-  margin: 12rem 0;
+  margin: 24rem 0 12rem 0;
 
   .title {
     margin-bottom: 6rem;

@@ -32,7 +32,7 @@ const SectionProjets = () => {
           happen.
         </p>
       </div>
-      <div className="wrapper-illustration-title website" data-speed="0.95">
+      <div className="wrapper-illustration-title website" data-speed="0.95" data-lag="0.05">
         <div className="relative">
           <h3 className="sub-title">Website</h3>
           <div className="illustration">
@@ -52,7 +52,7 @@ const SectionProjets = () => {
 				</div>
 			</div> */}
 
-      <div className="wrapper-illustration-title packaging" data-speed="1.03">
+      <div className="wrapper-illustration-title packaging" data-speed="1.03" data-lag="0.05">
         <h3 className="sub-title">Packaging</h3>
         <div className="relative">
           <div className="illustration">
@@ -64,7 +64,7 @@ const SectionProjets = () => {
         </div>
       </div>
 
-      <div className="wrapper-illustration-title social" data-speed="0.95">
+      <div className="wrapper-illustration-title social" data-speed="0.95" data-lag="0.05">
         <div className="relative">
           <h3 className="sub-title">Social networks</h3>
           <div className="illustration">
@@ -76,7 +76,7 @@ const SectionProjets = () => {
         </div>
       </div>
 
-      <div className="wrapper-illustration-title logo" data-speed="0.90">
+      <div className="wrapper-illustration-title logo" data-speed="1.10" data-lag="0.05">
         <div className="illustration">
           <StaticImage
             src="../../../../assets/images/illustration_logo.png"
@@ -86,7 +86,7 @@ const SectionProjets = () => {
         <h3 className="sub-title">Logotype</h3>
       </div>
 
-      <div className="wrapper-illustration-title identity">
+      <div className="wrapper-illustration-title identity" data-speed="1.03" data-lag="0.015">
         <div className="relative">
           <h3 className="sub-title">Identity</h3>
           <div className="illustration">

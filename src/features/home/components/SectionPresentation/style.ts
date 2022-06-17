@@ -59,11 +59,8 @@ export const Section = styled.section`
     font-family: ${({ theme }) => theme.typography.fonts.body.bold};
     -webkit-text-stroke: 1px ${({ theme }) => theme.colors.text};
 
-    > div {
+    div {
       overflow: hidden; // reveal text
-      .animation-done & {
-        overflow: visible;
-      }
     }
   }
 
@@ -84,6 +81,11 @@ export const Section = styled.section`
         overflow: visible;
       }
     }
+  }
+
+  &.animation-done .intro-presentation div,
+  &.animation-done .intro-detail div {
+    overflow: visible;
   }
 
   .wrapper-svg {
