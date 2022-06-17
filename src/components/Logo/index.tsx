@@ -1,20 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import styled from '@emotion/styled';
 import gsap from 'gsap';
 import { DrawSVGPlugin } from 'gsap/dist/DrawSVGPlugin';
+import { SVG } from './style';
 
-const SVG = styled.svg`
-	position: fixed;
-	z-index: 100;
-	left: 50%;
-	top: 0;
-	transform: translate(-50%);
-	max-width : 40vw;
-	.st1 {
-		/* transition: fill 0.3s linear ; */
-		fill: transparent;
-	}
-`
 gsap.registerPlugin(DrawSVGPlugin);
 
 const Logo = () => {
@@ -94,8 +82,6 @@ const Logo = () => {
 		c1.28,1.04,2.31,2.07,3.02,2.84l-0.01,0l0.01,0.01c0.35,0.38,0.62,0.69,0.79,0.91l0,0l0.25,0.31c1.73,2.27,3.04,5.54,3.41,8.38
 		c0.13,0.96,0.19,1.92,0.19,2.86v0.03c0,5.31-1.91,10.57-3.97,16.15v0c-1.26,3.44-2.54,7.02-3.36,10.8
 		C90.06,130.97,87.42,127.97,85.35,124.66L85.35,124.66z"/>
-
-
 		</SVG>
 	)
 };
