@@ -34,11 +34,11 @@ const Hero = () => {
 
 		tl.to(selector(".letters div"), { duration: 1, yPercent: 0, stagger: 0.05, ease: "expo.inOut", delay: 10 })
 			.to(selector(".letters div:not([data-char='.'])"), { duration: 1, yPercent: 103, stagger: 0.1, ease: "expo.inOut" })
-			// .from(refMark.current, {
-			// 	opacity: 0,
-			// 	duration: 0.5,
-			// 	scale: 1.1
-			// })
+			.from(refMark.current, {
+				opacity: 0,
+				duration: 0.5,
+				scale: 1.1
+			})
 			// animation des categories
 			.addLabel("categorie")
 			.to(selectElementPresentation(".categorie"), {
@@ -84,7 +84,7 @@ const Hero = () => {
 			</Heading>
 			<WrapperMarkPresentation className="mark__categories">
 				<div className="relative" style={{ display: "inline-block" }}>
-					{/* <Mark ref={refMark} className="mark" /> */}
+					<Mark ref={refMark} className="mark" />
 					<Presentation className="categories" ref={refPresentation}>
 						<span className="categorie opacity-0 webdesign add-lag">WEBDESIGN</span>
 						<span className="separator opacity-0 add-lag">I</span>

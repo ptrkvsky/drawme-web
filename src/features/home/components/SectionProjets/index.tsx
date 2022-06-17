@@ -32,10 +32,10 @@ const SectionProjets = () => {
           happen.
         </p>
       </div>
-      <div className="wrapper-illustration-title website" data-speed="0.95" data-lag="0.05">
+      <div className="wrapper-illustration-title website">
         <div className="relative">
-          <h3 className="sub-title">Website</h3>
-          <div className="illustration">
+          <h3 className="sub-title" data-speed="0.93" data-lag="0.04">Website</h3>
+          <div className="illustration" data-speed="1.07" data-lag="0.05">
             <StaticImage
               src="../../../../assets/images/illustration_website.png"
               alt="Illustration website"
@@ -52,9 +52,9 @@ const SectionProjets = () => {
 				</div>
 			</div> */}
 
-      <div className="wrapper-illustration-title packaging" data-speed="1.03" data-lag="0.05">
-        <h3 className="sub-title">Packaging</h3>
-        <div className="relative">
+      <div className="wrapper-illustration-title packaging" >
+        <h3 className="sub-title" data-speed="0.95" data-lag="0.05">Packaging</h3>
+        <div className="relative" data-speed="1.02" data-lag="0.04">
           <div className="illustration">
             <StaticImage
               src="../../../../assets/images/illustration_packaging.png"
@@ -66,8 +66,8 @@ const SectionProjets = () => {
 
       <div className="wrapper-illustration-title social" data-speed="0.95" data-lag="0.05">
         <div className="relative">
-          <h3 className="sub-title">Social networks</h3>
-          <div className="illustration">
+          <h3 className="sub-title" data-speed="0.95" data-lag="0.05">Social networks</h3>
+          <div className="illustration" data-speed="1.05" data-lag="0.04">
             <StaticImage
               src="../../../../assets/images/illustration_social.png"
               alt="Illustration social"
@@ -76,20 +76,21 @@ const SectionProjets = () => {
         </div>
       </div>
 
-      <div className="wrapper-illustration-title logo" data-speed="1.10" data-lag="0.05">
-        <div className="illustration">
+
+      <div className="wrapper-illustration-title logo" >
+        <div className="illustration" data-speed="0.98" data-lag="0.04">
           <StaticImage
             src="../../../../assets/images/illustration_logo.png"
             alt="Illustration logo"
           />
         </div>
-        <h3 className="sub-title">Logotype</h3>
+        <h3 className="sub-title" data-speed="1.1" data-lag="0.05">Logotype</h3>
       </div>
 
-      <div className="wrapper-illustration-title identity" data-speed="1.03" data-lag="0.015">
+      <div className="wrapper-illustration-title identity">
         <div className="relative">
-          <h3 className="sub-title">Identity</h3>
-          <div className="illustration">
+          <h3 className="sub-title" data-speed="0.93" data-lag="0.04">Identity</h3>
+          <div className="illustration" data-speed="0.95" data-lag="0.05">
             <StaticImage
               src="../../../../assets/images/illustration_identity.png"
               alt="Illustration identity"
