@@ -57,7 +57,6 @@ export const Section = styled.section`
     line-height: 1.2;
     letter-spacing: 0.2rem;
     font-family: ${({ theme }) => theme.typography.fonts.body.bold};
-    -webkit-text-stroke: 1px ${({ theme }) => theme.colors.text};
 
     div {
       overflow: hidden; // reveal text
