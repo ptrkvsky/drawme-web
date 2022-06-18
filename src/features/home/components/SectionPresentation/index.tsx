@@ -1,11 +1,11 @@
-import React, { FC, useContext, useEffect, useRef } from "react";
+import React, { FC, useContext, useLayoutEffect, useRef } from "react";
 import gsap from "gsap"
 import { SplitText } from "gsap/dist/SplitText";
 import { StaticImage } from "gatsby-plugin-image";
 import { Presentation } from "./interfaces/Presentation";
 import { Section } from "./style";
-import Signature from "../Signature";
 import { SmoothScrollContext } from "../../../app/context/SmoothScrollContext";
+// import Signature from "../Signature";
 
 interface Props {
 	presentation: Presentation;
@@ -51,29 +51,28 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
 	const refIntroDetail = useRef<HTMLDivElement>(null);
 	const refWrapperSVG = useRef<HTMLDivElement>(null);
 
-	useEffect(() => {
+	useLayoutEffect(() => {
+		const splitIntroPresentation = getLines(refIntroPresentation);
+		const splitIntroDetail = getLines(refIntroDetail);
+
+		// Apply data lag to presentation
+		if (splitIntroPresentation && smoothScrollContext) {
+			splitIntroPresentation.lines.forEach((line: any, i: number) => {
+				smoothScrollContext.effects(line, { speed: 1, lag: (i + 1) * 0.05 });
+			})
+		}
+
+		// Apply data lag to detail
+		if (splitIntroDetail && smoothScrollContext) {
+			splitIntroDetail.lines.forEach((line: any, i: number) => {
+				smoothScrollContext.effects(line, { speed: 1, lag: (i + 1) * 0.05 });
+			})
+		}
 		setTimeout(() => {
-			const splitIntroPresentation = getLines(refIntroPresentation);
-			const splitIntroDetail = getLines(refIntroDetail);
-
-			// Apply data lag to presentation
-			if (splitIntroPresentation && smoothScrollContext) {
-				splitIntroPresentation.lines.forEach((line: any, i: number) => {
-					smoothScrollContext.effects(line, { speed: 1, lag: (i + 1) * 0.05 });
-				})
-			}
-
-			// Apply data lag to detail
-			if (splitIntroDetail && smoothScrollContext) {
-				splitIntroDetail.lines.forEach((line: any, i: number) => {
-					smoothScrollContext.effects(line, { speed: 1, lag: (i + 1) * 0.05 });
-				})
-			}
-
 			refTimeline.current = gsap.timeline({
 				scrollTrigger: {
 					trigger: refSection.current,
-					markers: true,
+					markers: false,
 					start: "0 center",
 				}
 			})
@@ -89,7 +88,7 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
 				.addLabel("revealCrayon")
 				.from(selectElement(".illustration.crayon"), scaleIllustration, "revealCrayon-=0.25")
 				.to(selectElement(".illustration.crayon .reveal"), reveal, "revealCrayon-=0.25")
-				// Display intro
+				// -------------------- Display Intro
 				.from(splitIntroPresentation.lines, {
 					y: 100,
 					ease: "power4.out",
@@ -99,7 +98,7 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
 					},
 					opacity: 0,
 				})
-				// Display detail
+				// -------------------- Display Detail
 				.from(splitIntroDetail.lines, {
 					y: 100,
 					ease: "power4.out",
@@ -110,9 +109,8 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
 					opacity: 0,
 					delay: -0.3,
 				})
-				// remove overflow hidden from lines
+				// -------------------- Animation is complete
 				.from(splitIntroPresentation.lines, {
-					overflow: "visible",
 					onComplete: () => {
 						setIsAnimationDone(true);
 					}
@@ -163,7 +161,7 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
 			<div ref={refIntroPresentation} className="intro-presentation">{presentation.introPresentation}</div>
 			<div ref={refIntroDetail} className="intro-detail">{presentation.introDetail}</div>
 			<div ref={refWrapperSVG} className="wrapper-svg" id="wrapper-svg">
-				<Signature />
+				{/* <Signature /> */}
 			</div>
 		</Section>
 	);
