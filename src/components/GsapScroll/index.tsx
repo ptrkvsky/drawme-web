@@ -18,7 +18,6 @@ const GsapScroll: FC = ({ children }) => {
 			wrapper: refWrapper.current,
 			content: refContent.current,
 			smooth: 1.5,
-
 			normalizeScroll: true, // prevents address bar from showing/hiding on most devices, solves various other browser inconsistencies
 			ignoreMobileResize: true, // skips ScrollTrigger.refresh() on mobile resizes from address bar showing/hiding
 			effects: true,
