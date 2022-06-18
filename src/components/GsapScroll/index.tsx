@@ -1,12 +1,12 @@
-import React, { useState } from "react"
+import React, { FC, useEffect, useRef, useState } from "react";
 import gsap from "gsap"
+import { MorphSVGPlugin } from "gsap/dist/MorphSVGPlugin";
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/dist/ScrollSmoother';
-import { FC, useEffect, useRef } from "react";
 import { SmoothScrollContext } from "../../features/app/context/SmoothScrollContext";
 
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother, MorphSVGPlugin);
 
 const GsapScroll: FC = ({ children }) => {
 	const [smoothScroll, setSmoothScroll] = useState<globalThis.ScrollSmoother>()
