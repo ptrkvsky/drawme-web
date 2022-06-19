@@ -106,6 +106,7 @@ const GlobalStyles = () => {
               clear: both;
             }
           }
+
           .container {
             width: 100%;
             max-width: 1150px;
@@ -115,48 +116,66 @@ const GlobalStyles = () => {
               padding: 0 2rem;
             }
           }
+
           .none {
             display: none;
           }
+
           .opacity-0 {
             opacity: 0;
           }
+
           .primary-color {
             color: ${theme.colors.iceIceBaby};
           }
+
+          .split-text div {
+            overflow: hidden ;
+          } 
+
+          .overflow-visible  .split-text div {
+            overflow: visible ;
+          } 
+          
 					#___gatsby{
 						min-height: 100vh;
 					}
+
           #___gatsby .hide-tablet-landscape {
             display: inherit;
             ${breakpoints.tabletLandscape} {
               display: none;
             }
           }
+
           #___gatsby .show-tablet-landscape {
             display: none;
             ${breakpoints.tabletLandscape} {
               display: flex;
             }
           }
+
           #___gatsby .hide-tablet-portrait {
             display: inherit;
             ${breakpoints.tabletPortrait} {
               display: none;
             }
           }
+
           #___gatsby .show-tablet-portrait {
             display: none;
             ${breakpoints.tabletPortrait} {
               display: inherit;
             }
           }
+
           #___gatsby .hide-mobile {
             display: inherit;
             ${breakpoints.mobile} {
               display: none;
             }
           }
+
           #___gatsby .show-mobile {
             display: none;
             ${breakpoints.mobile} {

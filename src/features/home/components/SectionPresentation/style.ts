@@ -57,10 +57,6 @@ export const Section = styled.section`
     line-height: 1.2;
     letter-spacing: 0.2rem;
     font-family: ${({ theme }) => theme.typography.fonts.body.bold};
-
-    div {
-      overflow: hidden; // reveal text
-    }
   }
 
   .intro-detail {
@@ -73,18 +69,6 @@ export const Section = styled.section`
     font-weight: 800;
     font-size: 2.1rem;
     font-family: ${({ theme }) => theme.typography.fonts.body.thin};
-
-    > div {
-      overflow: hidden; // reveal text
-      .animation-done & {
-        overflow: visible;
-      }
-    }
-  }
-
-  &.animation-done .intro-presentation div,
-  &.animation-done .intro-detail div {
-    overflow: visible;
   }
 
   .wrapper-svg {

@@ -1,39 +1,16 @@
 import React, { FC, useContext, useLayoutEffect, useRef } from "react";
 import gsap from "gsap"
-import { SplitText } from "gsap/dist/SplitText";
 import { StaticImage } from "gatsby-plugin-image";
 import { Presentation } from "./interfaces/Presentation";
 import { Section } from "./style";
 import { SmoothScrollContext } from "../../../app/context/SmoothScrollContext";
+import { splitText, setLag } from "../../../../helpers";
+import { reveal } from "./animation";
+
 // import Signature from "../Signature";
 
 interface Props {
 	presentation: Presentation;
-}
-
-const scaleIllustration = {
-	scale: 1.1,
-	duration: 0.75,
-	ease: "power4.out",
-}
-
-const reveal = {
-	duration: 0.75,
-	x: "100%",
-	ease: "power4.out",
-}
-
-// Transform a paragraph into a SplitText object
-const getLines = (refParagraph: React.RefObject<HTMLDivElement>): SplitText => {
-	const splitParagraph = new SplitText(refParagraph.current, {
-		type: `lines`,
-	});
-
-	new SplitText(refParagraph.current, {
-		type: `lines`,
-	});
-
-	return splitParagraph
 }
 
 const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
@@ -51,75 +28,26 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
 	const refIntroDetail = useRef<HTMLDivElement>(null);
 	const refWrapperSVG = useRef<HTMLDivElement>(null);
 
+	// useFull to set a class at the end of animation
+	const handleOnComplete = () => {
+		setIsAnimationDone(true);
+	}
+
 	useLayoutEffect(() => {
-		const splitIntroPresentation = getLines(refIntroPresentation);
-		const splitIntroDetail = getLines(refIntroDetail);
+		// Split paragraph into lines
+		const splitIntroPresentation = splitText(refIntroPresentation);
+		const splitIntroDetail = splitText(refIntroDetail);
 
-		// Apply data lag to presentation
-		if (splitIntroPresentation && smoothScrollContext) {
-			splitIntroPresentation.lines.forEach((line: any, i: number) => {
-				smoothScrollContext.effects(line, { speed: 1, lag: (i + 1) * 0.05 });
-			})
-		}
+		// Set lag on text
+		setLag(splitIntroPresentation, smoothScrollContext)
+		setLag(splitIntroDetail, smoothScrollContext)
 
-		// Apply data lag to detail
-		if (splitIntroDetail && smoothScrollContext) {
-			splitIntroDetail.lines.forEach((line: any, i: number) => {
-				smoothScrollContext.effects(line, { speed: 1, lag: (i + 1) * 0.05 });
-			})
-		}
-		setTimeout(() => {
-			refTimeline.current = gsap.timeline({
-				scrollTrigger: {
-					trigger: refSection.current,
-					markers: false,
-					start: "0 center",
-				}
-			})
-				// -------------------- Reveal image book
-				.addLabel("revealBook")
-				.from(selectElement(".illustration.book"), scaleIllustration, "revealBook")
-				.to(selectElement(".illustration.book .reveal"), reveal, "revealBook")
-				// -------------------- Reveal image book
-				.addLabel("revealFingers")
-				.from(selectElement(".illustration.fingers"), scaleIllustration, "revealFingers-=0.35")
-				.to(selectElement(".illustration.fingers .reveal"), reveal, "revealFingers-=0.35")
-				// -------------------- Reveal image crayon
-				.addLabel("revealCrayon")
-				.from(selectElement(".illustration.crayon"), scaleIllustration, "revealCrayon-=0.25")
-				.to(selectElement(".illustration.crayon .reveal"), reveal, "revealCrayon-=0.25")
-				// -------------------- Display Intro
-				.from(splitIntroPresentation.lines, {
-					y: 100,
-					ease: "power4.out",
-					skewY: 10,
-					stagger: {
-						amount: 0.3,
-					},
-					opacity: 0,
-				})
-				// -------------------- Display Detail
-				.from(splitIntroDetail.lines, {
-					y: 100,
-					ease: "power4.out",
-					skewY: 10,
-					stagger: {
-						amount: 0.3,
-					},
-					opacity: 0,
-					delay: -0.3,
-				})
-				// -------------------- Animation is complete
-				.from(splitIntroPresentation.lines, {
-					onComplete: () => {
-						setIsAnimationDone(true);
-					}
-				})
-		}, 10)
+		// Reveal all elements
+		reveal(refTimeline, refSection, selectElement, splitIntroPresentation, splitIntroDetail, handleOnComplete)
 	}, [smoothScrollContext])
 
 	return (
-		<Section className={`${isAnimationDone ? "section-presentation animation-done" : "section-presentation"}`} ref={refSection}>
+		<Section className={`${isAnimationDone ? "section-presentation overflow-visible" : "section-presentation"}`} ref={refSection}>
 			<div className="illustration book" data-speed="1.05" data-lag="0.04">
 				<div className="wrapper-overflow">
 					<StaticImage

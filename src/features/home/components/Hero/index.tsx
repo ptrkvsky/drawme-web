@@ -73,12 +73,12 @@ const Hero = () => {
 				</div>
 				<div className="highlight">
 					<div className="letters">
-						<div data-lag="0.04" data-char=".">s</div>
-						<div data-lag="0.05" data-char=".">t</div>
-						<div data-lag="0.06" data-char=".">u</div>
-						<div data-lag="0.07" data-char=".">d</div>
-						<div data-lag="0.08" data-char=".">i</div>
-						<div data-lag="0.09" data-char="o">o</div>
+						<div data-char=".">s</div>
+						<div data-char=".">t</div>
+						<div data-char=".">u</div>
+						<div data-char=".">d</div>
+						<div data-char=".">i</div>
+						<div data-char="o">o</div>
 					</div>
 				</div>
 			</Heading>
