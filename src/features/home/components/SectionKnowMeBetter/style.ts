@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Section = styled(`section`)`
+  position: relative;
   display: block;
   padding: 10.1rem 0;
   background-color: ${({ theme }) => theme.colors.blackBeauty};
