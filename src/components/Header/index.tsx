@@ -13,6 +13,7 @@ gsap.registerPlugin(SplitText);
 gsap.registerPlugin(ScrambleTextPlugin);
 
 const Header = () => {
+	const refWrapper = useRef<HTMLHeadElement>(null)
 	const refLogo = useRef<HTMLParagraphElement>(null);
 	const refDraw = useRef<HTMLSpanElement>(null);
 	const refSheep = useRef<HTMLSpanElement>(null);
@@ -66,7 +67,20 @@ const Header = () => {
 
 		const charsRandom = "!@#$%^&*+:'/|"
 
-		gsap.timeline({ repeat: 9999 })
+		gsap.timeline({
+			repeat: -1, scrollTrigger:
+			{
+				trigger: refWrapper.current,
+				start: 'top top',
+				endTrigger: 'footer',
+				end: 'bottom+=100vh bottom',
+				pin: true,
+				pinType: "fixed",
+				markers: true,
+				pinReparent: true,
+				pinSpacing: false
+			}
+		})
 			.to(splitSheep.chars[letter1?.position], { duration: getRandomInt(1, 4), delay: getRandomInt(0, 3), scrambleText: { text: letter1.letter, chars: charsRandom } })
 			.to(splitSheep.chars[letter2?.position], { duration: getRandomInt(1, 4), delay: getRandomInt(0, 3), scrambleText: { text: letter2.letter, chars: charsRandom } })
 			.to(splitSheep.chars[letter3?.position], { duration: getRandomInt(1, 4), delay: getRandomInt(0, 3), scrambleText: { text: letter3.letter, chars: charsRandom } })
@@ -92,7 +106,7 @@ const Header = () => {
 	const appState = useAppSelector(appSelector)
 
 	return (
-		<Wrapper className={appState.header.isBlack ? "black" : ""}>
+		<Wrapper ref={refWrapper} className={appState.header.isBlack ? "black" : ""}>
 			<BurgerButton />
 			<p ref={refLogo} className="logo"><span ref={refDraw}>DRAW</span> ME A <span ref={refSheep} className="highlight">SHEEP<span className="dash">-</span></span></p>
 		</Wrapper>
