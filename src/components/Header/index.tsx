@@ -1,15 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { SplitText } from "gsap/dist/SplitText";
-import { ScrambleTextPlugin } from "gsap/dist/ScrambleTextPlugin";
 import BurgerButton from "../BurgerButton";
 import { Wrapper } from "./style";
 import getRandomInt from "../../helpers/getRandom";
 import { appSelector } from "../../features/app/slices/appSlice";
 import { useAppSelector } from "../../redux/hooks";
-
-gsap.registerPlugin(SplitText);
-gsap.registerPlugin(ScrambleTextPlugin);
 
 const Header = () => {
   const tl = useRef<gsap.core.Timeline>();

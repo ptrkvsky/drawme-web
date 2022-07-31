@@ -1,11 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { DrawSVGPlugin } from "gsap/dist/DrawSVGPlugin";
 import { SVG, WrapperAbsolute, WrapperRelative } from "./style";
 import { useAppDispatch } from "../../redux/hooks";
 import { setIsPreloadOver } from "../../features/app/slices/appSlice";
-
-gsap.registerPlugin(DrawSVGPlugin);
 
 /**
  * @description - This component is used to display animated logo when entering the website.
