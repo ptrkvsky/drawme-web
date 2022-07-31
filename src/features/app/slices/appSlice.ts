@@ -5,6 +5,7 @@ import { AppState } from "../types/index";
 
 const initialState: AppState = {
   isLoaded: false,
+  isPreloadOver: false,
   menu: {
     isMenuOpen: false,
     isMenuClosing: false,
@@ -19,6 +20,9 @@ const appSlice = createSlice({
   name: `app`,
   initialState,
   reducers: {
+    setIsPreloadOver(state, action) {
+      state.isPreloadOver = action.payload;
+    },
     setIsLoaded(state) {
       state.isLoaded = true;
     },
@@ -54,6 +58,7 @@ export const menuSelector = (state: RootState) => state.app.menu;
 export const {
   setIsBlacked,
   setIsLoaded,
+  setIsPreloadOver,
   setMenuClosingStateFalse,
   setMenuClosingStateTrue,
   setMenuStateFalse,

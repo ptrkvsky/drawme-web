@@ -6,9 +6,13 @@ import _SplitText from "gsap/SplitText";
  * @param smoothScrollContext
  */
 export const setLag = (splitText: _SplitText, smoothScrollContext: ScrollSmoother | undefined) => {
-  if (splitText && smoothScrollContext) {
-    splitText.lines.forEach((line, i) => {
-      smoothScrollContext.effects(line, { speed: 1, lag: (i + 1) * 0.05 });
-    });
-  }
+  setTimeout(() => {
+    console.log("set lag");
+
+    if (splitText && smoothScrollContext) {
+      splitText.lines.forEach((line, i) => {
+        smoothScrollContext.effects(line, { speed: 1, lag: (i + 1) * 0.05 });
+      });
+    }
+  }, 100);
 };

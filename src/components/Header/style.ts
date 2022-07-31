@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled(`header`)`
+  opacity: 0;
   position: fixed;
   top: 0;
   z-index: 10;
@@ -11,7 +12,6 @@ export const Wrapper = styled(`header`)`
   padding-left: 5.8rem;
   height: 58px;
   background: #161618;
-  opacity: 1;
   backdrop-filter: blur(20px);
 
   background: inherit;
@@ -22,10 +22,14 @@ export const Wrapper = styled(`header`)`
     background: #161618 0% 0% no-repeat padding-box;
   }
 
+  &.visible {
+    opacity: 1 !important; // overides gsap config
+  }
+
   .logo {
     margin-left: 16px;
     color: #fff;
-    font-size: 1.6rem;
+    font-size: clamp(16px, 1.6rem, 1.6rem);
     letter-spacing: 5.6px;
     text-transform: uppercase;
 

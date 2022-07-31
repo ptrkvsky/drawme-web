@@ -1,11 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
 const { Curtains, PingPongPlane, Vec2, ShaderPass } = require("curtainsjs");
-// const { GUI } = require("dat.gui");
+const { GUI } = require("dat.gui");
 import { renderFs, ripplesFs, ripplesVs } from "../../../../lib/fs";
+import { useAppSelector } from "../../../../redux/hooks";
+import { appSelector } from "../../../../features/app/slices/appSlice";
 
 const debug = false;
 
 const Canvas = () => {
+  const { isPreloadOver } = useAppSelector(appSelector);
+
+  const tlCanvasBlack = useRef<gsap.core.Timeline>();
+  const tlCanvasWhite = useRef<gsap.core.Timeline>();
+  const refWrapperCanvasWhite = useRef<HTMLDivElement>(null);
+  const refWrapperCanvasBlack = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const curtainBlack = new Curtains({
@@ -469,17 +479,63 @@ const Canvas = () => {
         }
       });
     }
+
+    // Fix canvas
+    // tlCanvasBlack.current = gsap.timeline({
+    //   repeat: -1,
+    //   scrollTrigger: {
+    //     trigger: refWrapperCanvasBlack.current,
+    //     start: "top top",
+    //     endTrigger: "footer",
+    //     end: "bottom+=100vh bottom",
+    //     pin: true,
+    //     pinType: "fixed",
+    //     markers: false,
+    //     pinReparent: false,
+    //     pinSpacing: false,
+    //   },
+    // });
+    // tlCanvasWhite.current = gsap.timeline({
+    //   repeat: -1,
+    //   scrollTrigger: {
+    //     trigger: refWrapperCanvasWhite.current,
+    //     start: "top top",
+    //     endTrigger: "footer",
+    //     end: "bottom+=100vh bottom",
+    //     pin: true,
+    //     pinType: "fixed",
+    //     markers: false,
+    //     pinReparent: false,
+    //     pinSpacing: false,
+    //   },
+    // });
   }, []);
 
   return (
     <>
       <div
+        ref={refWrapperCanvasWhite}
         id="canvas-white"
-        style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh" }}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          opacity: 0,
+        }}
       />
       <div
+        ref={refWrapperCanvasBlack}
         id="canvas-black"
-        style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh" }}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          opacity: isPreloadOver ? 1 : 0,
+        }}
       />
     </>
   );

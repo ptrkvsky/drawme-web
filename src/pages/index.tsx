@@ -106,7 +106,6 @@ const IndexPage = (props: any) => {
     <Layout>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Canvas />
-      <Logo />
       <Hero />
       <SectionPresentation presentation={data.sanityHome} />
       <SectionDraw />

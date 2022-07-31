@@ -24,11 +24,12 @@ export const reveal = (
   handleOnComplete: () => void
 ) => {
   setTimeout(() => {
+    console.log("reveal");
     refTimeline.current = gsap
       .timeline({
         scrollTrigger: {
           trigger: refSection.current,
-          markers: false,
+          markers: true,
           start: "0 center",
         },
       })
@@ -69,5 +70,5 @@ export const reveal = (
       .from(splitIntroPresentation.lines, {
         onComplete: handleOnComplete,
       });
-  }, 10);
+  }, 100);
 };

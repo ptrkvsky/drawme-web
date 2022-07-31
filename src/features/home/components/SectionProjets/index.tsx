@@ -11,7 +11,7 @@ const SectionProjets = () => {
       .timeline({
         scrollTrigger: {
           trigger: refSectionProjets.current,
-          markers: true,
+          markers: false,
         },
       })
       .to(`#canvas-black`, {
@@ -34,7 +34,9 @@ const SectionProjets = () => {
       </div>
       <div className="wrapper-illustration-title website">
         <div className="relative">
-          <h3 className="sub-title" data-speed="0.93" data-lag="0.04">Website</h3>
+          <h3 className="sub-title" data-speed="0.93" data-lag="0.04">
+            Website
+          </h3>
           <div className="illustration" data-speed="1.07" data-lag="0.05">
             <StaticImage
               src="../../../../assets/images/illustration_website.png"
@@ -52,8 +54,10 @@ const SectionProjets = () => {
 				</div>
 			</div> */}
 
-      <div className="wrapper-illustration-title packaging" >
-        <h3 className="sub-title" data-speed="0.95" data-lag="0.05">Packaging</h3>
+      <div className="wrapper-illustration-title packaging">
+        <h3 className="sub-title" data-speed="0.95" data-lag="0.05">
+          Packaging
+        </h3>
         <div className="relative" data-speed="1.02" data-lag="0.04">
           <div className="illustration">
             <StaticImage
@@ -66,7 +70,9 @@ const SectionProjets = () => {
 
       <div className="wrapper-illustration-title social" data-speed="0.95" data-lag="0.05">
         <div className="relative">
-          <h3 className="sub-title" data-speed="0.95" data-lag="0.05">Social networks</h3>
+          <h3 className="sub-title" data-speed="0.95" data-lag="0.05">
+            Social networks
+          </h3>
           <div className="illustration" data-speed="1.05" data-lag="0.04">
             <StaticImage
               src="../../../../assets/images/illustration_social.png"
@@ -76,20 +82,23 @@ const SectionProjets = () => {
         </div>
       </div>
 
-
-      <div className="wrapper-illustration-title logo" >
+      <div className="wrapper-illustration-title logo">
         <div className="illustration" data-speed="0.98" data-lag="0.04">
           <StaticImage
             src="../../../../assets/images/illustration_logo.png"
             alt="Illustration logo"
           />
         </div>
-        <h3 className="sub-title" data-speed="1.1" data-lag="0.05">Logotype</h3>
+        <h3 className="sub-title" data-speed="1.1" data-lag="0.05">
+          Logotype
+        </h3>
       </div>
 
       <div className="wrapper-illustration-title identity">
         <div className="relative">
-          <h3 className="sub-title" data-speed="0.93" data-lag="0.04">Identity</h3>
+          <h3 className="sub-title" data-speed="0.93" data-lag="0.04">
+            Identity
+          </h3>
           <div className="illustration" data-speed="0.95" data-lag="0.05">
             <StaticImage
               src="../../../../assets/images/illustration_identity.png"

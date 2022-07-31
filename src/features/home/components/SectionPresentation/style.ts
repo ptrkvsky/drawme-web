@@ -8,9 +8,14 @@ export const Section = styled.section`
   z-index: 10;
   font-size: 2.4rem;
   min-height: 90rem;
+  /* overflow: hidden; */
 
   .illustration {
     position: absolute;
+
+    ${({ theme }) => theme.breakpoints.mobile} {
+      display: none;
+    }
 
     &.fingers {
       top: 6.8rem;

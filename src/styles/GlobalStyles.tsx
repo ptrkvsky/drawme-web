@@ -3,11 +3,10 @@ import ResetStyles from "./ResetStyles";
 import { Global, css, useTheme } from "@emotion/react";
 import { breakpoints } from "./foundations/breakpoints";
 import { ITheme } from "./StyleContainer";
-import wagonBold from "../fonts/wagon/wagon-bold.woff2"
-import PPNeueMontrealBold from "../fonts/montreal/PPNeueMontreal-Bold.woff2"
-import PPNeueMontrealMedium from "../fonts/montreal/PPNeueMontreal-Medium.woff2"
-import PPNeueMontrealThin from "../fonts/montreal/PPNeueMontreal-Thin.woff2"
-
+import wagonBold from "../fonts/wagon/wagon-bold.woff2";
+import PPNeueMontrealBold from "../fonts/montreal/PPNeueMontreal-Bold.woff2";
+import PPNeueMontrealMedium from "../fonts/montreal/PPNeueMontreal-Medium.woff2";
+import PPNeueMontrealThin from "../fonts/montreal/PPNeueMontreal-Thin.woff2";
 
 const GlobalStyles = () => {
   const theme: ITheme = useTheme();
@@ -16,25 +15,25 @@ const GlobalStyles = () => {
       <ResetStyles />
       <Global
         styles={css`
-					@font-face {
-						font-family: 'WagonBold';
-          	src: url(${wagonBold}) format('woff2');
-					}
+          @font-face {
+            font-family: "WagonBold";
+            src: url(${wagonBold}) format("woff2");
+          }
 
-					@font-face {
-						font-family: 'MontrealBold';
-          	src: url(${PPNeueMontrealBold}) format('woff2');
-					}
+          @font-face {
+            font-family: "MontrealBold";
+            src: url(${PPNeueMontrealBold}) format("woff2");
+          }
 
-					@font-face {
-						font-family: 'MontrealMedium';
-          	src: url(${PPNeueMontrealMedium}) format('woff2');
-					}
+          @font-face {
+            font-family: "MontrealMedium";
+            src: url(${PPNeueMontrealMedium}) format("woff2");
+          }
 
-					@font-face {
-						font-family: 'MontrealThin';
-          	src: url(${PPNeueMontrealThin}) format('woff2');
-					}
+          @font-face {
+            font-family: "MontrealThin";
+            src: url(${PPNeueMontrealThin}) format("woff2");
+          }
 
           * {
             box-sizing: border-box;
@@ -55,11 +54,11 @@ const GlobalStyles = () => {
             color: ${theme.colors.text};
             min-height: 100vh;
             font-family: ${theme.typography.fonts.body.medium};
-  
+
             margin: 0;
             padding: 0;
-						transition: all 0.5s linear;
-						opacity: 0;
+            transition: all 0.5s linear;
+            opacity: 0;
           }
 
           h1,
@@ -130,16 +129,16 @@ const GlobalStyles = () => {
           }
 
           .split-text div {
-            overflow: hidden ;
-          } 
+            overflow: hidden;
+          }
 
-          .overflow-visible  .split-text div {
-            overflow: visible ;
-          } 
-          
-					#___gatsby{
-						min-height: 100vh;
-					}
+          .overflow-visible .split-text div {
+            overflow: visible;
+          }
+
+          #___gatsby {
+            min-height: 100vh;
+          }
 
           #___gatsby .hide-tablet-landscape {
             display: inherit;
@@ -170,7 +169,7 @@ const GlobalStyles = () => {
           }
 
           #___gatsby .hide-mobile {
-            display: inherit;
+            display: initial;
             ${breakpoints.mobile} {
               display: none;
             }
@@ -182,28 +181,27 @@ const GlobalStyles = () => {
               display: inherit;
             }
           }
-       
-					/* width */
-					::-webkit-scrollbar {
-						width: 8px;
-					}
 
-					/* Track */
-					::-webkit-scrollbar-track {
-						background: #000000;
-					}
+          /* width */
+          ::-webkit-scrollbar {
+            width: 8px;
+          }
 
-					/* Handle */
-					::-webkit-scrollbar-thumb {
-						background: #292929;
-						transition: all 0.3s linear;
-					}
+          /* Track */
+          ::-webkit-scrollbar-track {
+            background: #000000;
+          }
 
-					/* Handle on hover */
-					::-webkit-scrollbar-thumb:hover {
-						background: #555;
-					}
+          /* Handle */
+          ::-webkit-scrollbar-thumb {
+            background: #292929;
+            transition: all 0.3s linear;
+          }
 
+          /* Handle on hover */
+          ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+          }
         `}
       />
     </>

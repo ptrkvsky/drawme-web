@@ -3,7 +3,7 @@ import logoText from "../../../../assets/svg/logo_text.svg";
 
 export const Wrapper = styled(`div`)`
   position: relative;
-  min-height: 100vh;
+  min-height: calc(100vh - 5.8rem);
   display: flex;
   align-items: center;
 `;
@@ -15,7 +15,7 @@ export const Heading = styled(`h1`)`
 
   margin-left: -1.1rem;
 
-  font-size: 27.7rem;
+  font-size: 0;
   color: #fff;
   z-index: 10;
   mix-blend-mode: difference;
@@ -25,12 +25,16 @@ export const Heading = styled(`h1`)`
     font-size: 0;
     overflow: hidden;
     div {
-      font-size: 27.7rem;
+      font-size: clamp(80px, 27.7rem, 27.7rem);
+      ${({ theme }) => theme.breakpoints.tabletPortrait} {
+        font-size: 35rem;
+      }
+
       display: inline-block;
     }
 
     &.graphic {
-      letter-spacing: 10px;
+      letter-spacing: clamp(1px, 1rem, 1rem);
     }
 
     .shadow {
@@ -50,6 +54,14 @@ export const Heading = styled(`h1`)`
     color: transparent;
     -webkit-text-stroke: 2px #fff;
 
+    ${({ theme }) => theme.breakpoints.tabletPortrait} {
+      -webkit-text-stroke: 1px #fff;
+    }
+
+    ${({ theme }) => theme.breakpoints.tabletPortrait} {
+      bottom: 0;
+    }
+
     div {
       font-size: 31.6rem;
     }
@@ -67,16 +79,16 @@ export const Heading = styled(`h1`)`
 `;
 
 export const Presentation = styled(`div`)`
-  gap: 24px;
+  gap: clamp(7px, 2.4rem, 2.4rem);
   display: flex;
   justify-content: center;
 
   mix-blend-mode: difference;
 
   span {
-    letter-spacing: 5.6px;
+    letter-spacing: clamp(2px, 0.56rem, 0.56rem);
     color: #f7f7f7;
-    font-size: 1.6rem;
+    font-size: clamp(10px, 1.6rem, 1.6rem);
     transform: translate(-30, 0px);
   }
 
