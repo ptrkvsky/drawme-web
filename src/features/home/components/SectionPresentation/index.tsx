@@ -18,10 +18,9 @@ interface Props {
 const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
   // Get preloader
   const { isPreloadOver } = useAppSelector(appSelector);
-
   // Get smoothscroll context
   const smoothScrollContext = useContext(SmoothScrollContext);
-  // state to say when animation is done
+  // State to say when animation is done
   const [isAnimationDone, setIsAnimationDone] = React.useState(false);
   // Timeline
   const refTimeline = useRef<gsap.core.Timeline>();
@@ -33,7 +32,7 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
   const refIntroDetail = useRef<HTMLDivElement>(null);
   const refWrapperSVG = useRef<HTMLDivElement>(null);
 
-  // useFull to set a class at the end of animation
+  // Used to set a class at the end of animation
   const handleOnComplete = () => {
     setIsAnimationDone(true);
   };
