@@ -6,6 +6,10 @@ export const Wrapper = styled(`div`)`
   min-height: calc(100vh - 5.8rem);
   display: flex;
   align-items: center;
+
+  ${({ theme }) => theme.breakpoints.mobile} {
+    padding: 0 24px;
+  } ;
 `;
 
 export const Heading = styled(`h1`)`
@@ -114,4 +118,9 @@ export const WrapperMarkPresentation = styled(`div`)`
   bottom: 54px;
   width: 100%;
   text-align: center;
+
+  ${({ theme }) => theme.breakpoints.mobile} {
+    bottom: 16px;
+    left: 0;
+  } ;
 `;

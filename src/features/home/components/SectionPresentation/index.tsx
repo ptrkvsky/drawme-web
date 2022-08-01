@@ -5,9 +5,11 @@ import { Presentation } from "./interfaces/Presentation";
 import { Section } from "./style";
 import { SmoothScrollContext } from "../../../app/context/SmoothScrollContext";
 import { splitText, setLag } from "../../../../helpers";
-import { reveal } from "./animation";
-import { useAppSelector } from "../../../../redux/hooks";
+import { reveal, switchCanva } from "./animation";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { appSelector } from "../../../../features/app/slices/appSlice";
+import { homeSelector } from "../../../../features/home/slices/homeSlice";
+import { toggleBlack } from "../../slices/homeSlice";
 
 // import Signature from "../Signature";
 
@@ -18,12 +20,14 @@ interface Props {
 const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
   // Get preloader
   const { isPreloadOver } = useAppSelector(appSelector);
+  const { isCanvaBlack } = useAppSelector(homeSelector);
   // Get smoothscroll context
   const smoothScrollContext = useContext(SmoothScrollContext);
   // State to say when animation is done
   const [isAnimationDone, setIsAnimationDone] = React.useState(false);
-  // Timeline
-  const refTimeline = useRef<gsap.core.Timeline>();
+  // Timelines
+  const refTimelineReveal = useRef<gsap.core.Timeline>();
+  const refTimelineCanva = useRef<gsap.core.Timeline>();
   // Selecteur d'élément
   const refSection = useRef<HTMLElement>(null);
   const selectElement = gsap.utils.selector(refSection);
@@ -31,11 +35,20 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
   const refIntroPresentation = useRef<HTMLDivElement>(null);
   const refIntroDetail = useRef<HTMLDivElement>(null);
   const refWrapperSVG = useRef<HTMLDivElement>(null);
+  // Dispatch
+  const dispatch = useAppDispatch();
 
   // Used to set a class at the end of animation
   const handleOnComplete = () => {
     setIsAnimationDone(true);
   };
+
+  const notifyCanvaIsBlack = () => {
+    console.log("callback is called", isCanvaBlack);
+    dispatch(toggleBlack());
+  };
+
+  console.log(isCanvaBlack);
 
   useLayoutEffect(() => {
     // Wait till preloader is over
@@ -52,14 +65,22 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
 
       // Reveal all elements
       reveal(
-        refTimeline,
+        refTimelineReveal,
         refSection,
         selectElement,
         splitIntroPresentation,
         splitIntroDetail,
         handleOnComplete
       );
-    }, 100);
+    }, 100); // Wait 100ms for gsap to be ready
+  }, [smoothScrollContext, isPreloadOver]);
+
+  useLayoutEffect(() => {
+    // Wait till preloader is over
+    if (!isPreloadOver) return;
+    console.log("useLayoutEffect");
+    // Switch canva from back to white
+    switchCanva(refTimelineCanva, refSection, notifyCanvaIsBlack);
   }, [smoothScrollContext, isPreloadOver]);
 
   return (

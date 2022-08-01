@@ -1,5 +1,4 @@
 import gsap from "gsap";
-import { SplitText } from "gsap/dist/SplitText";
 import _SplitText from "gsap/SplitText";
 import React from "react";
 
@@ -15,6 +14,40 @@ const revealParam = {
   ease: "power4.out",
 };
 
+/**
+ * @desc Switch canva from back to white
+ * @param refTimeline
+ * @param refSection
+ * @param callback
+ */
+export const switchCanva = (
+  refTimeline: React.MutableRefObject<gsap.core.Timeline | undefined>,
+  refSection: React.RefObject<HTMLElement>,
+  handleOnComplete: () => void
+) => {
+  console.log("switch canva is called");
+
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: refSection.current,
+        markers: true,
+        start: "0 bottom",
+      },
+      onComplete: handleOnComplete,
+    })
+    .set("#canvas-white", {
+      opacity: 1,
+    })
+    .set("#canvas-black", {
+      opacity: 0,
+    })
+    .call(() => {
+      console.log("Fais quelque chose");
+      handleOnComplete();
+    });
+};
+
 export const reveal = (
   refTimeline: React.MutableRefObject<gsap.core.Timeline | undefined>,
   refSection: React.RefObject<HTMLElement>,
@@ -24,12 +57,11 @@ export const reveal = (
   handleOnComplete: () => void
 ) => {
   setTimeout(() => {
-    console.log("reveal");
     refTimeline.current = gsap
       .timeline({
         scrollTrigger: {
           trigger: refSection.current,
-          markers: true,
+          markers: false,
           start: "0 center",
         },
       })

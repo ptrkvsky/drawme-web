@@ -2,10 +2,9 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled(`header`)`
   opacity: 0;
-  position: fixed;
   top: 0;
   z-index: 10;
-  width: 100%;
+  width: 100vw !important;
 
   display: flex;
   align-items: center;
@@ -16,6 +15,10 @@ export const Wrapper = styled(`header`)`
 
   background: inherit;
   mix-blend-mode: difference;
+
+  ${({ theme }) => theme.breakpoints.mobile} {
+    padding: 0 24px !important; // overides gsap config
+  }
 
   &.black {
     backdrop-filter: blur(7px);

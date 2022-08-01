@@ -1,5 +1,4 @@
-import { useAppDispatch } from "./../../../redux/hooks";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../../redux/store";
 import { AppState } from "../types/index";
 
@@ -20,13 +19,13 @@ const appSlice = createSlice({
   name: `app`,
   initialState,
   reducers: {
-    setIsPreloadOver(state, action) {
+    setIsPreloadOver(state, action: PayloadAction<boolean>) {
       state.isPreloadOver = action.payload;
     },
     setIsLoaded(state) {
       state.isLoaded = true;
     },
-    setMenuStatus(state, action) {
+    setMenuStatus(state, action: PayloadAction<boolean>) {
       state.menu.isMenuOpen = action.payload;
     },
     setMenuStateFalse(state) {

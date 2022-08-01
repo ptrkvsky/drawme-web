@@ -7,6 +7,10 @@ export const Wrapper = styled.button`
   gap: 4px;
   border: none;
   background: transparent;
+
+  ${({ theme }) => theme.breakpoints.mobile} {
+    gap: 5px;
+  } ;
 `;
 
 export const Line = styled.span`
@@ -14,4 +18,9 @@ export const Line = styled.span`
   width: 19px;
   height: 3px;
   background-color: #fff;
+
+  ${({ theme }) => theme.breakpoints.mobile} {
+    width: 36px;
+    height: 6px;
+  } ;
 `;
