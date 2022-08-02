@@ -9,7 +9,7 @@ import { reveal, switchCanva } from "./animation";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { appSelector } from "../../../../features/app/slices/appSlice";
 import { homeSelector } from "../../../../features/home/slices/homeSlice";
-import { toggleBlack } from "../../slices/homeSlice";
+import { removeBlack } from "../../slices/homeSlice";
 
 // import Signature from "../Signature";
 
@@ -44,8 +44,8 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
   };
 
   const notifyCanvaIsBlack = () => {
-    console.log("callback is called", isCanvaBlack);
-    dispatch(toggleBlack());
+    console.log("🍜 Callback is called", isCanvaBlack);
+    dispatch(removeBlack());
   };
 
   console.log(isCanvaBlack);
@@ -73,15 +73,16 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
         handleOnComplete
       );
     }, 100); // Wait 100ms for gsap to be ready
-  }, [smoothScrollContext, isPreloadOver]);
+  }, [isPreloadOver]);
 
   useLayoutEffect(() => {
     // Wait till preloader is over
     if (!isPreloadOver) return;
-    console.log("useLayoutEffect");
-    // Switch canva from back to white
-    switchCanva(refTimelineCanva, refSection, notifyCanvaIsBlack);
-  }, [smoothScrollContext, isPreloadOver]);
+    setTimeout(() => {
+      // Switch canva from back to white
+      switchCanva(refTimelineCanva, refSection, notifyCanvaIsBlack);
+    }, 150); // Wait 150ms for gsap to be ready
+  }, [isPreloadOver]);
 
   return (
     <Section

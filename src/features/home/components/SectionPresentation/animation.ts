@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import _SplitText from "gsap/SplitText";
 import React from "react";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 const scaleIllustration = {
   scale: 1.1,
@@ -25,27 +26,37 @@ export const switchCanva = (
   refSection: React.RefObject<HTMLElement>,
   handleOnComplete: () => void
 ) => {
-  console.log("switch canva is called");
-
-  gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: refSection.current,
-        markers: true,
-        start: "0 bottom",
-      },
-      onComplete: handleOnComplete,
-    })
-    .set("#canvas-white", {
-      opacity: 1,
-    })
-    .set("#canvas-black", {
-      opacity: 0,
-    })
-    .call(() => {
-      console.log("Fais quelque chose");
+  ScrollTrigger.create({
+    trigger: refSection.current,
+    start: "top bottom",
+    end: "bottom 50%+=100px",
+    onEnter: () => {
       handleOnComplete();
-    });
+    },
+    onToggle: (self) => console.log("toggled, isActive:", self.isActive),
+  });
+
+  // console.log("🤟 switch canva is called");
+  // refTimeline.current = gsap
+  //   .timeline({
+  //     scrollTrigger: {
+  //       trigger: refSection.current,
+  //       start: "100px bottom",
+  //       scrub: true,
+  //       markers: true,
+  //     },
+  //     onComplete: handleOnComplete,
+  //   })
+  //   .set("#canvas-white", {
+  //     opacity: 1,
+  //   })
+  //   .set("#canvas-black", {
+  //     opacity: 0,
+  //   });
+  // .call(() => {
+  //   console.log("🎆 Fais quelque chose");
+  //   handleOnComplete();
+  // });
 };
 
 export const reveal = (
