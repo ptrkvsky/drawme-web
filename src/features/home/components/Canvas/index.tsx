@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useRef } from "react";
 const { Curtains, PingPongPlane, Vec2, ShaderPass } = require("curtainsjs");
-const { GUI } = require("dat.gui");
+// const { GUI } = require("dat.gui");
 import { renderFs, ripplesFs, ripplesVs } from "../../../../lib/fs";
 import { useAppSelector } from "../../../../redux/hooks";
 import { homeSelector } from "../../../../features/home/slices/homeSlice";
@@ -9,6 +9,7 @@ import { Canva } from "./style";
 const debug = false;
 
 const Canvas = () => {
+  if (typeof window === "undefined") return <></>;
   const { isCanvaBlack } = useAppSelector(homeSelector);
   const refWrapperCanvasWhite = useRef<HTMLDivElement>(null);
   const refWrapperCanvasBlack = useRef<HTMLDivElement>(null);
@@ -477,6 +478,8 @@ const Canvas = () => {
       });
     }
   }, []);
+
+  console.log("isCanvaBlack", isCanvaBlack);
 
   return (
     <>

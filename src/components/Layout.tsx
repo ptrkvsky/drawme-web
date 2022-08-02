@@ -1,14 +1,10 @@
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import Header from "./Header";
-
-import "../styles/layout.css";
 import StyleContainer from "../styles/StyleContainer";
 import Preloader from "./Preloader";
 import GsapScroll from "./GsapScroll";
 
-interface LayoutProps {}
-
-const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
+const Layout: FC = ({ children }) => {
   useEffect(() => {
     const body = document.querySelector("body");
     if (body) {
