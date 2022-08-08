@@ -7,4 +7,5 @@ export const Canva = styled.div`
   width: 100vw;
   height: 100vh;
   transition: opacity 0.5s ease-in-out;
+  pointer-events: none;
 `;

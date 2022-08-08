@@ -103,17 +103,19 @@ const IndexPage = (props: any) => {
   }
 
   return (
-    <Layout>
-      <SEO title={site.title} description={site.description} keywords={site.keywords} />
+    <>
       <Canvas />
-      <Hero />
-      <SectionPresentation presentation={data.sanityHome} />
-      <SectionDraw />
-      <SectionProjets />
-      <SectionDrawTogether />
-      <SectionKnowMeBetter />
-      <Footer />
-    </Layout>
+      <Layout>
+        <SEO title={site.title} description={site.description} keywords={site.keywords} />
+        <Hero />
+        <SectionPresentation presentation={data.sanityHome} />
+        <SectionDraw />
+        <SectionProjets />
+        <SectionDrawTogether />
+        <SectionKnowMeBetter />
+        <Footer />
+      </Layout>
+    </>
   );
 };
 

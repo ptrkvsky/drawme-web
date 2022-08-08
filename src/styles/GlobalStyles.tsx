@@ -61,6 +61,10 @@ const GlobalStyles = () => {
             opacity: 0;
           }
 
+          #gatsby-focus-wrapper {
+            transform: none;
+          }
+
           h1,
           h2,
           h3,
