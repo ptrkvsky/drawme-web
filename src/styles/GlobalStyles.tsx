@@ -186,6 +186,10 @@ const GlobalStyles = () => {
             }
           }
 
+          #smooth-wrapper {
+            overflow: inherit !important; // gsap add overflow hidden and text disapears
+          }
+
           /* width */
           ::-webkit-scrollbar {
             width: 8px;

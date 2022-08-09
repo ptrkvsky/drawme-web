@@ -20,9 +20,16 @@ export const Heading = styled(`h1`)`
   margin-left: -1.1rem;
 
   font-size: 0;
-  color: #fff;
+
   z-index: 10;
   mix-blend-mode: difference;
+
+  .canva-black & {
+    color: #fff;
+  }
+  .canva-white & {
+    color: ${({ theme }) => theme.colors.blackBeauty};
+  }
 
   .letters {
     position: relative;
@@ -58,8 +65,20 @@ export const Heading = styled(`h1`)`
     color: transparent;
     -webkit-text-stroke: 2px #fff;
 
+    .canva-black & {
+      -webkit-text-stroke: 2px #fff;
+    }
+    .canva-white & {
+      -webkit-text-stroke: 2px ${({ theme }) => theme.colors.blackBeauty};
+    }
+
     ${({ theme }) => theme.breakpoints.tabletPortrait} {
-      -webkit-text-stroke: 1px #fff;
+      .canva-black & {
+        -webkit-text-stroke: 1px #fff;
+      }
+      .canva-white & {
+        -webkit-text-stroke: 1px ${({ theme }) => theme.colors.blackBeauty};
+      }
     }
 
     ${({ theme }) => theme.breakpoints.tabletPortrait} {
@@ -110,7 +129,14 @@ export const Mark = styled(`div`)`
   width: 21.8rem;
   height: 21.8rem;
   background-image: url(${logoText});
-  mix-blend-mode: difference;
+
+  .canva-black & {
+    color: #fff;
+  }
+
+  .canva-white & {
+    color: ${({ theme }) => theme.colors.blackBeauty};
+  }
 `;
 
 export const WrapperMarkPresentation = styled(`div`)`

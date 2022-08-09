@@ -6,8 +6,10 @@ import { SmoothScrollContext } from "../../../app/context/SmoothScrollContext";
 
 const Hero = () => {
   const refTitle = useRef<HTMLHeadingElement>(null);
+  const timeline = gsap.timeline({});
+  const refTimeline = useRef<gsap.core.Timeline>(timeline);
+
   const refMark = useRef<HTMLDivElement>(null);
-  const refWrapper = useRef<HTMLDivElement>(null);
   const refPresentation = useRef<HTMLDivElement>(null);
   const smoothScrollContext = useContext(SmoothScrollContext);
 
@@ -16,29 +18,27 @@ const Hero = () => {
   let selector = gsap.utils.selector(refTitle);
 
   useEffect(() => {
+    if (!smoothScrollContext) return;
     const splitCategorie = new SplitText(selectElementPresentation(".add-lag"), {
       type: `chars`,
     });
 
     // apply data lag to each category
-    if (smoothScrollContext) {
-      splitCategorie.chars.forEach((char, i) => {
-        smoothScrollContext.effects(char, { speed: 1, lag: (i + 1) * 0.0055 });
-      });
-    }
+    splitCategorie.chars.forEach((char, i) => {
+      smoothScrollContext.effects(char, { speed: 1, lag: (i + 1) * 0.0055 });
+    });
 
     gsap.set(selector(".letters div"), { yPercent: -103 });
     gsap.set(refTitle.current, { autoAlpha: 1 });
 
-    const tl = gsap.timeline({});
-
-    tl.to(selector(".letters div"), {
-      duration: 1,
-      yPercent: 0,
-      stagger: 0.05,
-      ease: "expo.inOut",
-      delay: 10,
-    })
+    refTimeline.current
+      .to(selector(".letters div"), {
+        duration: 1,
+        yPercent: 0,
+        stagger: 0.05,
+        ease: "expo.inOut",
+        delay: 10,
+      })
       .to(selector(".letters div:not([data-char='.'])"), {
         duration: 1,
         yPercent: 103,
