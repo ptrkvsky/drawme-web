@@ -1,16 +1,12 @@
 import React from "react";
 import { graphql } from "gatsby";
-import GraphQLErrorList from "../components/graphql-error-list";
-import SEO from "../components/Seo";
-import Layout from "../containers/layout";
+import { Layout, SEO, Footer, GraphQLErrorList } from "../components";
 import Hero from "../features/home/components/Hero";
 import SectionProjets from "../features/home/components/SectionProjets";
-import Logo from "../components/Logo";
 import SectionDraw from "../features/home/components/SectionDraw";
 import SectionPresentation from "../features/home/components/SectionPresentation";
 import Canvas from "../features/home/components/Canvas";
 import SectionDrawTogether from "../features/home/components/SectionDrawTogether";
-import Footer from "../components/Footer";
 import SectionKnowMeBetter from "../features/home/components/SectionKnowMeBetter";
 
 export const query = graphql`

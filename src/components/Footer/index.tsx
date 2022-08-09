@@ -2,7 +2,7 @@ import React from "react";
 import { WrapperFooter, Infos, Goodbye, Socials } from "./style";
 import { StaticImage } from "gatsby-plugin-image";
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <WrapperFooter>
       <Infos className="infos">
@@ -39,5 +39,3 @@ const Footer = () => {
     </WrapperFooter>
   );
 };
-
-export default Footer;
