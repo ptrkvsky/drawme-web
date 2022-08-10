@@ -37,7 +37,6 @@ const Hero = () => {
         yPercent: 0,
         stagger: 0.05,
         ease: "expo.inOut",
-        delay: 10,
       })
       .to(selector(".letters div:not([data-char='.'])"), {
         duration: 1,
