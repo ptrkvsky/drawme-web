@@ -81,7 +81,7 @@ const Hero = () => {
 
   return (
     <Wrapper className="hero-wrapper">
-      <Heading ref={refTitle}>
+      <Heading ref={refTitle} data-speed="0.98" data-lag="0.04">
         <div className="letters graphic">
           <p className="shadow">Graphic</p>
           <div data-lag="0.0055" data-char=".">
@@ -117,7 +117,7 @@ const Hero = () => {
           </div>
         </div>
       </Heading>
-      <WrapperMarkPresentation className="mark__categories">
+      <WrapperMarkPresentation className="mark__categories" data-speed="1.2" data-lag="0.04">
         <div className="relative" style={{ display: "inline-block" }}>
           <Mark ref={refMark} className="mark hide-mobile">
             <LogoMark />
