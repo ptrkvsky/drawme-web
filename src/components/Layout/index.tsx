@@ -18,17 +18,17 @@ export const Layout: FC = ({ children }) => {
 
   return (
     <StyleContainer>
-      <GsapScroll>
-        <Header />
-        <Preloader />
-        <div
-          className={`${
-            isCanvaBlack ? `children-wrapper canva-black` : `children-wrapper canva-white`
-          }`}
-        >
+      <div
+        className={`${
+          isCanvaBlack ? `children-wrapper canva-black` : `children-wrapper canva-white`
+        }`}
+      >
+        <GsapScroll>
+          <Header />
+          <Preloader />
           {children}
-        </div>
-      </GsapScroll>
+        </GsapScroll>
+      </div>
     </StyleContainer>
   );
 };

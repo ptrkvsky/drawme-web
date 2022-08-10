@@ -1,29 +1,27 @@
-import React, { FC } from 'react';
-import { ThemeProvider } from '@emotion/react';
+import React, { FC } from "react";
+import { ThemeProvider } from "@emotion/react";
 
-import { lightTheme, baseTheme } from './theme';
-import GlobalStyles from './GlobalStyles';
+import { lightTheme, baseTheme } from "./theme";
+import GlobalStyles from "./GlobalStyles";
 
 const theme = {
-	...baseTheme,
-	...lightTheme,
+  ...baseTheme,
+  ...lightTheme,
 };
 
 export type ITheme = typeof theme;
 /**
  * @desc display theme provider and global style
- * @param children 
- * @returns 
+ * @param children
+ * @returns
  */
 const StyleContainer: FC = ({ children }) => {
-	return (
-		<ThemeProvider theme={theme}>
-			<GlobalStyles />
-			<div className={`theme-light`}>
-				{children}
-			</div>
-		</ThemeProvider>
-	);
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      {children}
+    </ThemeProvider>
+  );
 };
 
 export default StyleContainer;
