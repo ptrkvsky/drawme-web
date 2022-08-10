@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import logoText from "../../../../assets/svg/logo_text.svg";
 
 export const Wrapper = styled(`div`)`
   position: relative;
@@ -110,9 +109,16 @@ export const Presentation = styled(`div`)`
 
   span {
     letter-spacing: clamp(2px, 0.56rem, 0.56rem);
-    color: #f7f7f7;
+
     font-size: clamp(10px, 1.6rem, 1.6rem);
     transform: translate(-30, 0px);
+
+    .canva-black & {
+      color: ${({ theme }) => theme.colors.whiteBeauty};
+    }
+    .canva-white & {
+      color: ${({ theme }) => theme.colors.blackBeauty};
+    }
   }
 
   .separator {
@@ -128,7 +134,6 @@ export const Mark = styled(`div`)`
   display: block;
   width: 21.8rem;
   height: 21.8rem;
-  background-image: url(${logoText});
 
   .canva-black & {
     color: #fff;

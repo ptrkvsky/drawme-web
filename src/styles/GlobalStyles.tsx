@@ -187,7 +187,8 @@ const GlobalStyles = () => {
           }
 
           #smooth-wrapper {
-            overflow: inherit !important; // gsap add overflow hidden and text disapears
+            inset: auto !important; // gsap add inset auto and text disapears
+            height: auto !important; // gsap add inset auto and text disapears;
           }
 
           /* width */
@@ -209,6 +210,16 @@ const GlobalStyles = () => {
           /* Handle on hover */
           ::-webkit-scrollbar-thumb:hover {
             background: #555;
+          }
+
+          /* Animations */
+          @keyframes rotating {
+            from {
+              transform: rotate(0deg);
+            }
+            to {
+              transform: rotate(360deg);
+            }
           }
         `}
       />

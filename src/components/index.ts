@@ -6,5 +6,6 @@ export * from "./GsapScroll";
 export * from "./Header";
 export * from "./Layout";
 export * from "./Logo";
+export * from "./LogoMark";
 export * from "./Preloader";
 export * from "./Seo";

@@ -3,6 +3,7 @@ import { Heading, Wrapper, Presentation, Mark, WrapperMarkPresentation } from ".
 import gsap from "gsap";
 import { SplitText } from "gsap/dist/SplitText";
 import { SmoothScrollContext } from "../../../app/context/SmoothScrollContext";
+import { LogoMark } from "../../../../components";
 
 const Hero = () => {
   const refTitle = useRef<HTMLHeadingElement>(null);
@@ -118,7 +119,9 @@ const Hero = () => {
       </Heading>
       <WrapperMarkPresentation className="mark__categories">
         <div className="relative" style={{ display: "inline-block" }}>
-          <Mark ref={refMark} className="mark hide-mobile" />
+          <Mark ref={refMark} className="mark hide-mobile">
+            <LogoMark />
+          </Mark>
           <Presentation className="categories" ref={refPresentation}>
             <span className="categorie opacity-0 webdesign add-lag">WEBDESIGN</span>
             <span className="separator opacity-0 add-lag">I</span>
