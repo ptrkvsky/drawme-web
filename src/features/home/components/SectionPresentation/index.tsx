@@ -8,7 +8,6 @@ import { splitText, setLag } from "../../../../helpers";
 import { reveal, switchCanva } from "./animation";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { appSelector } from "../../../../features/app/slices/appSlice";
-import { homeSelector } from "../../../../features/home/slices/homeSlice";
 import { removeBlack } from "../../slices/homeSlice";
 
 // import Signature from "../Signature";
@@ -20,14 +19,12 @@ interface Props {
 const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
   // Get preloader
   const { isPreloadOver } = useAppSelector(appSelector);
-  const { isCanvaBlack } = useAppSelector(homeSelector);
   // Get smoothscroll context
   const smoothScrollContext = useContext(SmoothScrollContext);
   // State to say when animation is done
   const [isAnimationDone, setIsAnimationDone] = React.useState(false);
   // Timelines
   const refTimelineReveal = useRef<gsap.core.Timeline>();
-  const refTimelineCanva = useRef<gsap.core.Timeline>();
   // Selecteur d'élément
   const refSection = useRef<HTMLElement>(null);
   const selectElement = gsap.utils.selector(refSection);
@@ -44,11 +41,8 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
   };
 
   const notifyCanvaIsBlack = () => {
-    console.log("🍜 Callback is called", isCanvaBlack);
     dispatch(removeBlack());
   };
-
-  console.log(isCanvaBlack);
 
   useLayoutEffect(() => {
     // Wait till preloader is over
@@ -80,7 +74,7 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
     if (!isPreloadOver) return;
     setTimeout(() => {
       // Switch canva from back to white
-      switchCanva(refTimelineCanva, refSection, notifyCanvaIsBlack);
+      switchCanva(refSection, notifyCanvaIsBlack);
     }, 150); // Wait 150ms for gsap to be ready
   }, [isPreloadOver]);
 

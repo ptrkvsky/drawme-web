@@ -22,7 +22,6 @@ const revealParam = {
  * @param callback
  */
 export const switchCanva = (
-  refTimeline: React.MutableRefObject<gsap.core.Timeline | undefined>,
   refSection: React.RefObject<HTMLElement>,
   handleOnComplete: () => void
 ) => {
@@ -35,28 +34,6 @@ export const switchCanva = (
     },
     onToggle: (self) => console.log("toggled, isActive:", self.isActive),
   });
-
-  // console.log("🤟 switch canva is called");
-  // refTimeline.current = gsap
-  //   .timeline({
-  //     scrollTrigger: {
-  //       trigger: refSection.current,
-  //       start: "100px bottom",
-  //       scrub: true,
-  //       markers: true,
-  //     },
-  //     onComplete: handleOnComplete,
-  //   })
-  //   .set("#canvas-white", {
-  //     opacity: 1,
-  //   })
-  //   .set("#canvas-black", {
-  //     opacity: 0,
-  //   });
-  // .call(() => {
-  //   console.log("🎆 Fais quelque chose");
-  //   handleOnComplete();
-  // });
 };
 
 export const reveal = (
@@ -80,14 +57,19 @@ export const reveal = (
       .addLabel("revealBook")
       .from(selectElement(".illustration.book"), scaleIllustration, "revealBook")
       .to(selectElement(".illustration.book .reveal"), revealParam, "revealBook")
+      .set(selectElement(".illustration.book .reveal"), { display: "none" })
       // -------------------- Reveal image book
       .addLabel("revealFingers")
       .from(selectElement(".illustration.fingers"), scaleIllustration, "revealFingers-=0.35")
       .to(selectElement(".illustration.fingers .reveal"), revealParam, "revealFingers-=0.35")
+      .set(selectElement(".illustration.fingers .reveal"), { display: "none" })
+
       // -------------------- Reveal image crayon
       .addLabel("revealCrayon")
       .from(selectElement(".illustration.crayon"), scaleIllustration, "revealCrayon-=0.25")
       .to(selectElement(".illustration.crayon .reveal"), revealParam, "revealCrayon-=0.25")
+      .set(selectElement(".illustration.crayon .reveal"), { display: "none" })
+
       // -------------------- Display Intro
       .from(splitIntroPresentation.lines, {
         y: 100,
