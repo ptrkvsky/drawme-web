@@ -21,7 +21,6 @@ const homeSlice = createSlice({
       state.isCanvaBlack = false;
     },
     toggleBlack(state) {
-      console.log("toggleBlack");
       state.isCanvaBlack = !state.isCanvaBlack;
     },
   },
