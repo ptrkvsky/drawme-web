@@ -5,7 +5,6 @@ export const Section = styled("section")`
   position: relative;
   z-index: 30;
   font-size: 2.4rem;
-  background-color: aliceblue;
   cursor: none;
   min-height: 630px;
 
