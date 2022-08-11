@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { Layout, SEO, Footer, GraphQLErrorList } from "../components";
-import Hero from "../features/home/components/Hero";
+import Hero from "../features/home/components/SectionHero";
 import SectionProjets from "../features/home/components/SectionProjets";
 import SectionDraw from "../features/home/components/SectionDraw";
 import SectionPresentation from "../features/home/components/SectionPresentation";
