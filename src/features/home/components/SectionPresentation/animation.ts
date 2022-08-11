@@ -28,11 +28,15 @@ export const switchCanva = (
   ScrollTrigger.create({
     trigger: refSection.current,
     start: "top bottom",
-    end: "bottom 50%+=100px",
-    onEnter: () => {
+    end: "bottom",
+    markers: true,
+    // onEnter: () => {
+    //   handleOnComplete();
+    // },
+    onToggle: (self) => {
       handleOnComplete();
+      console.log("toggled, isActive:", self.isActive);
     },
-    onToggle: (self) => console.log("toggled, isActive:", self.isActive),
   });
 };
 

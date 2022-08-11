@@ -45,11 +45,19 @@ export const Section = styled.section`
     .wrapper-overflow {
       overflow: hidden;
       .reveal {
-        background-color: white;
-        width: calc(100% + 2px);
-        height: calc(100% + 2px);
         position: absolute;
         top: -1px;
+        width: calc(100% + 2px);
+        height: calc(100% + 2px);
+        transition: background-color 3s linear;
+
+        .canvas-white & {
+          background-color: ${({ theme }) => theme.colors.blackBeauty};
+        }
+
+        .canvas-black & {
+          background-color: white;
+        }
       }
     }
   }

@@ -8,7 +8,7 @@ import { splitText, setLag } from "../../../../helpers";
 import { reveal, switchCanva } from "./animation";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { appSelector } from "../../../../features/app/slices/appSlice";
-import { removeBlack } from "../../slices/homeSlice";
+import { removeBlack, toggleBlack } from "../../slices/homeSlice";
 
 // import Signature from "../Signature";
 
@@ -40,8 +40,8 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
     setIsAnimationDone(true);
   };
 
-  const notifyCanvaIsBlack = () => {
-    dispatch(removeBlack());
+  const handleToggleCanva = () => {
+    dispatch(toggleBlack());
   };
 
   useLayoutEffect(() => {
@@ -73,8 +73,7 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
     // Wait till preloader is over
     if (!isPreloadOver) return;
     setTimeout(() => {
-      // Switch canva from back to white
-      switchCanva(refSection, notifyCanvaIsBlack);
+      switchCanva(refSection, handleToggleCanva);
     }, 150); // Wait 150ms for gsap to be ready
   }, [isPreloadOver]);
 
