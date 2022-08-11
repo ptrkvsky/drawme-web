@@ -1,6 +1,6 @@
 export * from "./Canvas";
 export * from "./Circle";
-export * from "./Hero";
+export * from "./SectionHero";
 export * from "./SectionDraw";
 export * from "./SectionDrawTogether";
 export * from "./SectionKnowMeBetter";
