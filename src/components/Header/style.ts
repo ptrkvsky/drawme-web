@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const Wrapper = styled(`header`)`
   opacity: 0;
@@ -22,7 +22,19 @@ export const Wrapper = styled(`header`)`
 
   &.black {
     backdrop-filter: blur(7px);
-    background: #161618 0% 0% no-repeat padding-box;
+    background-color: #161618 !important; //gsap overtakes
+    background: #161618 !important; //gsap overtakes
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background-color: #161618 !important; //gsap overtakes
+      background: #161618 !important; //gsap overtakes
+    }
   }
 
   &.visible {
