@@ -117,7 +117,7 @@ const Hero = () => {
           </div>
         </div>
       </Heading>
-      <WrapperMarkPresentation className="mark__categories" data-speed="1.2" data-lag="0.04">
+      <WrapperMarkPresentation className="mark__categories">
         <div className="relative" style={{ display: "inline-block" }}>
           <Mark ref={refMark} className="mark hide-mobile">
             <LogoMark />

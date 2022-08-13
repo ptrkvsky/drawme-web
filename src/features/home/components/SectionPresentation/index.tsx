@@ -8,7 +8,7 @@ import { splitText, setLag } from "../../../../helpers";
 import { reveal, switchCanva } from "./animation";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { appSelector } from "../../../../features/app/slices/appSlice";
-import { removeBlack, toggleBlack } from "../../slices/homeSlice";
+import { toggleBlack } from "../../slices/homeSlice";
 
 // import Signature from "../Signature";
 
@@ -27,7 +27,7 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
   const refTimelineReveal = useRef<gsap.core.Timeline>();
   // Selecteur d'élément
   const refSection = useRef<HTMLElement>(null);
-  const selectElement = gsap.utils.selector(refSection);
+
   // References
   const refIntroPresentation = useRef<HTMLDivElement>(null);
   const refIntroDetail = useRef<HTMLDivElement>(null);
@@ -61,12 +61,11 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
       reveal(
         refTimelineReveal,
         refSection,
-        selectElement,
         splitIntroPresentation,
         splitIntroDetail,
         handleOnComplete
       );
-    }, 100); // Wait 100ms for gsap to be ready
+    }, 500); // Wait 100ms for gsap to be ready
   }, [isPreloadOver]);
 
   useLayoutEffect(() => {
@@ -74,7 +73,7 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
     if (!isPreloadOver) return;
     setTimeout(() => {
       switchCanva(refSection, handleToggleCanva);
-    }, 150); // Wait 150ms for gsap to be ready
+    }, 500); // Wait 150ms for gsap to be ready
   }, [isPreloadOver]);
 
   return (
@@ -90,7 +89,7 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
             src="../../../../assets/images/illustration_book.png"
             alt="Illustration book"
           />
-          <div className="reveal" />
+          {/* <div className="reveal" /> */}
         </div>
       </div>
       <div className="illustration crayon" data-speed="0.98" data-lag="0.3">
@@ -99,17 +98,17 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
             src="../../../../assets/images/illustration_crayon.png"
             alt="Illustration crayon"
           />
-          <div className="reveal" />
+          {/* <div className="reveal" /> */}
         </div>
       </div>
       <div className="illustration fingers">
         <div className="relative">
-          <div className="wrapper-overflow" data-speed="0.9">
+          <div className="wrapper-overflow" data-speed="0.9" data-lag="0.025">
             <StaticImage
               src="../../../../assets/images/illustration_fingers.png"
               alt="Illustration fingers"
             />
-            <div className="reveal" />
+            {/* <div className="reveal" /> */}
           </div>
           <div className="illustration letters">
             <div className="wrapper-overflow" data-speed="1.15" data-lag="0.03">
@@ -117,7 +116,7 @@ const SectionPresentation: FC<Props> = ({ presentation }: Props) => {
                 src="../../../../assets/images/illustration_letters.png"
                 alt="Illustration letters"
               />
-              <div className="reveal" />
+              {/* <div className="reveal" /> */}
             </div>
           </div>
         </div>

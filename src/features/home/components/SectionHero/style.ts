@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled(`div`)`
   position: relative;
-  min-height: calc(100vh - 5.8rem);
+  min-height: calc(100vh - 58px);
   display: flex;
   align-items: center;
 
@@ -13,13 +13,9 @@ export const Wrapper = styled(`div`)`
 
 export const Heading = styled(`h1`)`
   visibility: hidden;
-
   position: relative;
-
   margin-left: -1.1rem;
-
   font-size: 0;
-
   z-index: 10;
   mix-blend-mode: difference;
 
