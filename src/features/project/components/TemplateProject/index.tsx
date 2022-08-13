@@ -1,16 +1,12 @@
-import React from "react";
-import { graphql, PageProps } from "gatsby";
-import { Project } from "../../interfaces/Project";
-import { Layout } from "../../../../components";
-import Colors from "../Colors";
-import MainImages from "../MainImages";
-import PresentationClient from "../PresentationClient";
-import Typography from "../Typography";
-import DrawMeA from "../DrawMeA";
-import { useAppDispatch } from "../../../../redux/hooks";
-import { setIsBlacked } from "../../../app/slices/appSlice";
-import { Wrapper, WrapperSection1, WrapperColLeft, WrapperColRight } from "./style";
-import { setColor } from "../../slices/projectSlice";
+import React from 'react';
+import { graphql, PageProps } from 'gatsby';
+import { Project } from '../../interfaces/Project';
+import { Layout } from '../../../../components';
+import { useAppDispatch } from '../../../../redux/hooks';
+import { setIsBlacked } from '../../../app/slices/appSlice';
+import { Wrapper } from './style';
+import { setColor } from '../../slices/projectSlice';
+import SectionProjectOverview from '../sections/SectionProjectOverview';
 
 export const query = graphql`
   query ProjectTemplateQuery($id: String!) {
@@ -72,17 +68,7 @@ const ProjectTemplate = ({ data }: PageProps<DataProps>) => {
   return (
     <Layout>
       <Wrapper className="template__wrapper">
-        <WrapperSection1 className="template-container">
-          <WrapperColLeft>
-            <DrawMeA drawMeA={project.drawMeA} />
-            <MainImages images={project.mainImages} />
-          </WrapperColLeft>
-          <WrapperColRight>
-            <PresentationClient text={project.excerpt} />
-            <Colors color1={project.color1} color2={project.color2} color3={project.color3} />
-            <Typography image={project.typographie.asset} />
-          </WrapperColRight>
-        </WrapperSection1>
+        <SectionProjectOverview project={project} />
       </Wrapper>
     </Layout>
   );
