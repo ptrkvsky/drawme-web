@@ -16,7 +16,7 @@ export const Layout: FC = ({ children }) => {
     if (body) {
       body.style.opacity = `1`;
     }
-  }, [document]);
+  }, []);
 
   return (
     <StyleContainer>
