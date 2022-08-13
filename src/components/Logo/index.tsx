@@ -29,20 +29,21 @@ const Logo = () => {
         {
           drawSVG: true,
           ease: `linear`,
-          duration: 7,
+          duration: process.env.NODE_ENV === "development" ? 0.5 : 7,
         }
       )
       // Fill in the path
       .to(refLine1.current, {
         fill: `#000`,
-        duration: 0.75,
+        duration: process.env.NODE_ENV === "development" ? 0.1 : 0.75,
+
         ease: `linear`,
       })
       // Fade the logo out
       .to(refLine1.current, {
         delay: 0.5,
         opacity: 0,
-        duration: 0.75,
+        duration: process.env.NODE_ENV === "development" ? 0.1 : 0.75,
         ease: `linear`,
       })
       // Hide the logo

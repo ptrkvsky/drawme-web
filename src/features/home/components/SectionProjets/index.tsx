@@ -1,24 +1,9 @@
 import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
 import { StaticImage } from "gatsby-plugin-image";
 import { Section, Title } from "./style";
 
 const SectionProjets = () => {
   const refSectionProjets = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: refSectionProjets.current,
-          markers: false,
-        },
-      })
-      .to(`#canvas-black`, {
-        opacity: 0,
-        duration: 1,
-      });
-  }, []);
 
   return (
     <Section ref={refSectionProjets}>

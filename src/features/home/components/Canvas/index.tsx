@@ -479,6 +479,8 @@ const Canvas = () => {
     }
   }, []);
 
+  console.log("isCanvaBlack", isCanvaBlack);
+
   return (
     <>
       <Canva

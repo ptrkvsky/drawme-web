@@ -6,6 +6,6 @@ export const Canva = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 1s ease-in-out;
   pointer-events: none;
 `;

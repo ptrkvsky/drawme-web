@@ -9,12 +9,6 @@ const scaleIllustration = {
   ease: "power4.out",
 };
 
-const revealParam = {
-  duration: 0.75,
-  x: "100%",
-  ease: "power4.out",
-};
-
 /**
  * @desc Switch canva from back to white
  * @param refTimeline
@@ -28,7 +22,7 @@ export const switchCanva = (
   ScrollTrigger.create({
     trigger: refSection.current,
     start: "top bottom",
-    end: "bottom",
+    endTrigger: "footer",
     markers: true,
     // onEnter: () => {
     //   handleOnComplete();
@@ -43,36 +37,38 @@ export const switchCanva = (
 export const reveal = (
   refTimeline: React.MutableRefObject<gsap.core.Timeline | undefined>,
   refSection: React.RefObject<HTMLElement>,
-  selectElement: gsap.utils.SelectorFunc,
   splitIntroPresentation: _SplitText,
   splitIntroDetail: _SplitText,
   handleOnComplete: () => void
 ) => {
   setTimeout(() => {
+    // const selectElement = gsap.utils.selector(refSection);
+
     refTimeline.current = gsap
       .timeline({
         scrollTrigger: {
           trigger: refSection.current,
-          markers: false,
+          endTrigger: "footer",
+          markers: process.env.NODE_ENV === "development" ? true : false,
           start: "0 center",
         },
       })
       // -------------------- Reveal image book
-      .addLabel("revealBook")
-      .from(selectElement(".illustration.book"), scaleIllustration, "revealBook")
-      .to(selectElement(".illustration.book .reveal"), revealParam, "revealBook")
-      .set(selectElement(".illustration.book .reveal"), { display: "none" })
+      // .addLabel("revealBook")
+      // .from(selectElement(".illustration.book"), scaleIllustration, "revealBook")
+      // .to(selectElement(".illustration.book .reveal"), revealParam, "revealBook")
+      // .set(selectElement(".illustration.book .reveal"), { display: "none" })
       // -------------------- Reveal image book
-      .addLabel("revealFingers")
-      .from(selectElement(".illustration.fingers"), scaleIllustration, "revealFingers-=0.35")
-      .to(selectElement(".illustration.fingers .reveal"), revealParam, "revealFingers-=0.35")
-      .set(selectElement(".illustration.fingers .reveal"), { display: "none" })
+      // .addLabel("revealFingers")
+      // .from(selectElement(".illustration.fingers"), scaleIllustration, "revealFingers-=0.35")
+      // .to(selectElement(".illustration.fingers .reveal"), revealParam, "revealFingers-=0.35")
+      // .set(selectElement(".illustration.fingers .reveal"), { display: "none" })
 
       // -------------------- Reveal image crayon
-      .addLabel("revealCrayon")
-      .from(selectElement(".illustration.crayon"), scaleIllustration, "revealCrayon-=0.25")
-      .to(selectElement(".illustration.crayon .reveal"), revealParam, "revealCrayon-=0.25")
-      .set(selectElement(".illustration.crayon .reveal"), { display: "none" })
+      // .addLabel("revealCrayon")
+      // .from(selectElement(".illustration.crayon"), scaleIllustration, "revealCrayon-=0.25")
+      // .to(selectElement(".illustration.crayon .reveal"), revealParam, "revealCrayon-=0.25")
+      // .set(selectElement(".illustration.crayon .reveal"), { display: "none" })
 
       // -------------------- Display Intro
       .from(splitIntroPresentation.lines, {
