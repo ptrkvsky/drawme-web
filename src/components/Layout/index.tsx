@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useLayoutEffect } from "react";
 import Header from "../Header";
 import StyleContainer from "../../styles/StyleContainer";
 import Preloader from "../Preloader";
@@ -9,12 +9,14 @@ import { useAppSelector } from "../../redux/hooks";
 export const Layout: FC = ({ children }) => {
   const { isCanvaBlack } = useAppSelector(homeSelector);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    if (!document) return;
     const body = document.querySelector("body");
+
     if (body) {
       body.style.opacity = `1`;
     }
-  }, []);
+  }, [document]);
 
   return (
     <StyleContainer>
