@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { SVG, WrapperAbsolute, WrapperRelative } from "./style";
 import { useAppDispatch } from "../../redux/hooks";
 import { setIsPreloadOver } from "../../features/app/slices/appSlice";
+import { isProd } from "../../helpers/const";
 
 /**
  * @description - This component is used to display animated logo when entering the website.
@@ -29,21 +30,20 @@ const Logo = () => {
         {
           drawSVG: true,
           ease: `linear`,
-          duration: process.env.NODE_ENV === "development" ? 0.5 : 7,
+          duration: isProd ? 7 : 0.5,
         }
       )
       // Fill in the path
       .to(refLine1.current, {
         fill: `#000`,
-        duration: process.env.NODE_ENV === "development" ? 0.1 : 0.75,
-
+        duration: isProd ? 0.75 : 0.1,
         ease: `linear`,
       })
       // Fade the logo out
       .to(refLine1.current, {
         delay: 0.5,
         opacity: 0,
-        duration: process.env.NODE_ENV === "development" ? 0.1 : 0.75,
+        duration: isProd ? 0.75 : 0.1,
         ease: `linear`,
       })
       // Hide the logo

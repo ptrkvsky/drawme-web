@@ -2,6 +2,7 @@ import gsap from "gsap";
 import _SplitText from "gsap/SplitText";
 import React from "react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { isProd } from "../../../../helpers/const";
 
 const scaleIllustration = {
   scale: 1.1,
@@ -23,7 +24,7 @@ export const switchCanva = (
     trigger: refSection.current,
     start: "top bottom",
     endTrigger: "footer",
-    markers: true,
+    markers: !isProd,
     // onEnter: () => {
     //   handleOnComplete();
     // },
@@ -49,7 +50,7 @@ export const reveal = (
         scrollTrigger: {
           trigger: refSection.current,
           endTrigger: "footer",
-          markers: process.env.NODE_ENV === "development" ? true : false,
+          markers: !isProd,
           start: "0 center",
         },
       })
