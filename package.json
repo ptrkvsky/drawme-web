@@ -17,7 +17,7 @@
     "@emotion/styled": "11.9.3",
     "@portabletext/react": "1.0.6",
     "@reduxjs/toolkit": "1.8.2",
-    "@sanity/image-url": "1.0.1",
+    "@sanity/image-url": "1.0.2",
     "curtainsjs": "8.1.3",
     "date-fns": "2.28.0",
     "gatsby": "4.6.0",
